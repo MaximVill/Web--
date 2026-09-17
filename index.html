@@ -1,9 +1,95 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Portfolio</title>
+		<title>Портфолио | Вилл Максим</title>
+		<link rel="stylesheet" href="css/style.css" />
 	</head>
-	<body></body>
+	<body>
+		<header>
+			<img
+				src="images/logo.svg"
+				width="200"
+				height="120"
+				alt="Логотип Портфолио"
+			/>
+			<nav>
+				<ul>
+					<li><a href="#about">О себе</a></li>
+					<li><a href="#skills">Навыки</a></li>
+					<li><a href="#works">Примеры работ</a></li>
+					<li><a href="#contacts">Контакты</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<main>
+			<section id="about">
+				<h1>О себе</h1>
+				<p>Вилл Максим, ФИТ-241</p>
+				<p>Студент КемГУ из института цифры</p>
+				<ul class="portfolio-achievements">
+					<li>
+						<article class="card-achievements">
+							<h2 class="card-article__title">Достижение №1</h2>
+							<div class="portfolio-work portfolio-work_color_orange-1"></div>
+							<p class="card-article__description">Доучился до 3-го курса.</p>
+						</article>
+					</li>
+					<li>
+						<article class="card-achievements">
+							<h2 class="card-article__title">Достижение №2</h2>
+							<div class="portfolio-work portfolio-work_color_orange-1"></div>
+							<p class="card-article__description">
+								Всегда работаю, но всё равно успеваю в учебе.
+							</p>
+						</article>
+					</li>
+				</ul>
+			</section>
+
+			<section id="skills">
+				<h2>Навыки</h2>
+				<ul class="portfolio-skills">
+					<li>
+						<article class="card-skills">
+							<h2 class="card-article__title">C++</h2>
+							<div class="portfolio-work portfolio-work_color_orange-1"></div>
+						</article>
+					</li>
+					<li>
+						<article class="card-skills">
+							<h2 class="card-article__title">Python</h2>
+							<div class="portfolio-work portfolio-work_color_orange-1"></div>
+						</article>
+					</li>
+					<li>
+						<article class="card-skills">
+							<h2 class="card-article__title">Java</h2>
+							<div class="portfolio-work portfolio-work_color_orange-1"></div>
+						</article>
+					</li>
+					<li>
+						<article class="card-skills">
+							<h2 class="card-article__title">JS</h2>
+							<div class="portfolio-work portfolio-work_color_orange-1"></div>
+						</article>
+					</li>
+				</ul>
+			</section>
+
+			<section id="works">
+				<h2>Примеры работ</h2>
+			</section>
+
+			<section id="contacts">
+				<h2>Контакты</h2>
+			</section>
+		</main>
+
+		<footer>
+			<p>&copy; 2026 Вилл Максим</p>
+		</footer>
+	</body>
 </html>
