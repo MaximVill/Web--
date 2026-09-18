@@ -1,0 +1,22 @@
+[
+	{
+		"title": "Финансовый трекер",
+		"description": "Приложение для учёта личных доходов и расходов.",
+		"url": "https://github.com/MaximVill/FinanceTracker"
+	},
+	{
+		"title": "Телеграм-бот для геймеров",
+		"description": "Бот для помощи игрокам и поиска игровой информации.",
+		"url": "https://github.com/MaximVill/game-assistant-bot"
+	},
+	{
+		"title": "Приложение для просмотра космоса",
+		"description": "Приложение с информацией о космосе и космических объектах.",
+		"url": "https://github.com/MaximVill/SpaceToday"
+	},
+	{
+		"title": "Игра-платформер",
+		"description": "Групповой проект игры в жанре платформер.",
+		"url": "https://github.com/wh076/Showdown"
+	}
+]
