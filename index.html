@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta name="description" content="Портфолио студента КемГУ Вилла Максима" />
 		<title>Портфолио</title>
+
 		<link rel="stylesheet" href="css/style.css" />
 	</head>
 
@@ -13,11 +14,15 @@
 			<div class="header-content">
 				<a class="logo" href="#about">Портфолио</a>
 
+				<button class="menu-button" type="button" aria-label="Открыть меню">
+					Меню
+				</button>
+
 				<nav>
-					<ul>
+					<ul class="nav-list">
 						<li><a href="#about">О себе</a></li>
 						<li><a href="#skills">Навыки</a></li>
-						<li><a href="#works">Примеры работ</a></li>
+						<li><a href="#works">Работы</a></li>
 						<li><a href="#contacts">Контакты</a></li>
 					</ul>
 				</nav>
@@ -37,20 +42,16 @@
 
 				<ul class="portfolio-achievements">
 					<li>
-						<article class="card-achievements">
-							<h3 class="card-article__title">Достижение №1</h3>
-							<p class="card-article__description">
-								Доучился до 3-го курса без отчислений.
-							</p>
+						<article class="card">
+							<h3>Достижение №1</h3>
+							<p>Доучился до 3-го курса без отчислений.</p>
 						</article>
 					</li>
 
 					<li>
-						<article class="card-achievements">
-							<h3 class="card-article__title">Достижение №2</h3>
-							<p class="card-article__description">
-								Работаю и успешно совмещаю работу с учёбой.
-							</p>
+						<article class="card">
+							<h3>Достижение №2</h3>
+							<p>Работаю и успешно совмещаю работу с учёбой.</p>
 						</article>
 					</li>
 				</ul>
@@ -59,110 +60,27 @@
 			<section id="skills">
 				<h2>Навыки</h2>
 
-				<ul class="portfolio-skills">
-					<li>
-						<article class="card-skills">
-							<h3 class="card-article__title">C++</h3>
-							<p class="card-article__description">Базовый уровень</p>
-						</article>
-					</li>
+				<div class="skills-slider">
+					<button class="slider-button" id="prev-skill" type="button">
+						Предыдущий
+					</button>
 
-					<li>
-						<article class="card-skills">
-							<h3 class="card-article__title">Python</h3>
-							<p class="card-article__description">Средний уровень</p>
-						</article>
-					</li>
+					<article class="skill-card">
+						<h3 id="skill-name">Python</h3>
+						<p id="skill-level">Средний уровень</p>
+					</article>
 
-					<li>
-						<article class="card-skills">
-							<h3 class="card-article__title">Java</h3>
-							<p class="card-article__description">Базовый уровень</p>
-						</article>
-					</li>
-
-					<li>
-						<article class="card-skills">
-							<h3 class="card-article__title">JavaScript</h3>
-							<p class="card-article__description">Базовый уровень</p>
-						</article>
-					</li>
-				</ul>
+					<button class="slider-button" id="next-skill" type="button">
+						Следующий
+					</button>
+				</div>
 			</section>
 
 			<section id="works">
 				<h2>Примеры работ</h2>
 
-				<ul class="portfolio-works">
-					<li>
-						<article class="card-work">
-							<h3 class="card-article__title">Финансовый трекер</h3>
-							<p class="card-article__description">
-								Приложение для учёта личных доходов и расходов.
-							</p>
-							<a
-								class="card-link"
-								href="https://github.com/MaximVill/FinanceTracker"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								Открыть на GitHub
-							</a>
-						</article>
-					</li>
-
-					<li>
-						<article class="card-work">
-							<h3 class="card-article__title">Телеграм-бот для геймеров</h3>
-							<p class="card-article__description">
-								Бот для помощи игрокам и поиска игровой информации.
-							</p>
-							<a
-								class="card-link"
-								href="https://github.com/MaximVill/game-assistant-bot"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								Открыть на GitHub
-							</a>
-						</article>
-					</li>
-
-					<li>
-						<article class="card-work">
-							<h3 class="card-article__title">
-								Приложение для просмотра космоса
-							</h3>
-							<p class="card-article__description">
-								Приложение для просмотра информации о космосе.
-							</p>
-							<a
-								class="card-link"
-								href="https://github.com/MaximVill/SpaceToday"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								Открыть на GitHub
-							</a>
-						</article>
-					</li>
-
-					<li>
-						<article class="card-work">
-							<h3 class="card-article__title">Игра-платформер</h3>
-							<p class="card-article__description">
-								Групповой проект: игра в жанре платформер.
-							</p>
-							<a
-								class="card-link"
-								href="https://github.com/wh076/Showdown"
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								Открыть на GitHub
-							</a>
-						</article>
-					</li>
+				<ul class="portfolio-works" id="portfolio-list">
+					<li class="loading-message">Загрузка работ...</li>
 				</ul>
 			</section>
 
@@ -171,19 +89,18 @@
 
 				<ul class="portfolio-contacts">
 					<li>
-						<article class="card-contacts">
-							<h3 class="card-article__title">Email</h3>
-							<a class="card-link" href="mailto:studmaximvill06@gmail.com">
+						<article class="card">
+							<h3>Email</h3>
+							<a href="mailto:studmaximvill06@gmail.com">
 								studmaximvill06@gmail.com
 							</a>
 						</article>
 					</li>
 
 					<li>
-						<article class="card-contacts">
-							<h3 class="card-article__title">Telegram</h3>
+						<article class="card">
+							<h3>Telegram</h3>
 							<a
-								class="card-link"
 								href="https://t.me/ommelauren"
 								target="_blank"
 								rel="noopener noreferrer"
@@ -194,10 +111,9 @@
 					</li>
 
 					<li>
-						<article class="card-contacts">
-							<h3 class="card-article__title">GitHub</h3>
+						<article class="card">
+							<h3>GitHub</h3>
 							<a
-								class="card-link"
 								href="https://github.com/MaximVill"
 								target="_blank"
 								rel="noopener noreferrer"
@@ -207,11 +123,63 @@
 						</article>
 					</li>
 				</ul>
+
+				<button class="open-modal-button" type="button">Написать мне</button>
 			</section>
 		</main>
 
+		<div class="modal" id="contact-modal">
+			<div class="modal-content">
+				<button class="modal-close" type="button" aria-label="Закрыть окно">
+					×
+				</button>
+
+				<h2>Обратная связь</h2>
+
+				<form id="contact-form">
+					<label for="name">Имя</label>
+					<input id="name" name="name" type="text" placeholder="Ваше имя" />
+
+					<label for="email">Email</label>
+					<input
+						id="email"
+						name="email"
+						type="email"
+						placeholder="example@mail.ru"
+					/>
+
+					<label for="message">Сообщение</label>
+					<textarea
+						id="message"
+						name="message"
+						rows="5"
+						placeholder="Напишите сообщение"
+					></textarea>
+
+					<p class="form-error" id="form-error"></p>
+					<p class="form-success" id="form-success"></p>
+
+					<button class="submit-button" type="submit">Отправить</button>
+				</form>
+			</div>
+		</div>
+
+		<button class="scroll-top-button" type="button" aria-label="Наверх">
+			↑
+		</button>
+
 		<footer>
 			<p>&copy; 2026 Вилл Максим, ФИТ-241</p>
+			<a
+				href="https://github.com/MaximVill/Web--/tree/lab2-portfolio-jquery"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				GitHub
+			</a>
 		</footer>
+
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<script src="js/script.js"></script>
 	</body>
 </html>

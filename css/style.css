@@ -10,19 +10,23 @@ html {
 
 body {
 	font-family: Arial, sans-serif;
-	line-height: 1.5;
 	color: #1f2937;
+	line-height: 1.5;
 	background-color: #f3f4f6;
 }
 
 header {
+	position: sticky;
+	top: 0;
+	z-index: 10;
 	background-color: #2c3e50;
-	padding: 20px;
 }
 
 .header-content {
 	max-width: 1100px;
+	min-height: 75px;
 	margin: 0 auto;
+	padding: 15px 20px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -30,26 +34,39 @@ header {
 }
 
 .logo {
-	color: #ffffff;
+	color: white;
 	font-size: 24px;
 	font-weight: bold;
 	text-decoration: none;
 }
 
-nav ul {
+.menu-button {
+	display: none;
+	padding: 8px 12px;
+	color: white;
+	background: transparent;
+	border: 1px solid white;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.nav-list {
 	display: flex;
 	gap: 20px;
 	list-style: none;
 }
 
-nav a {
-	color: #ffffff;
+.nav-list a {
+	padding-bottom: 5px;
+	color: white;
 	font-weight: bold;
 	text-decoration: none;
+	border-bottom: 2px solid transparent;
 }
 
-nav a:hover {
-	text-decoration: underline;
+.nav-list a:hover,
+.nav-list a.active {
+	border-bottom-color: #60a5fa;
 }
 
 main {
@@ -59,8 +76,8 @@ main {
 }
 
 section {
-	margin-bottom: 70px;
-	scroll-margin-top: 20px;
+	margin-bottom: 80px;
+	scroll-margin-top: 100px;
 }
 
 h1,
@@ -78,78 +95,186 @@ h2 {
 	font-size: 28px;
 }
 
-.about-text {
-	max-width: 650px;
+h3 {
+	margin-bottom: 10px;
+	color: #2c3e50;
+	font-size: 20px;
+}
+
+.about-text,
+.section-text {
+	max-width: 700px;
 	margin: 0 auto 30px;
 	text-align: center;
 }
 
-.about-text p {
-	margin-bottom: 8px;
-}
-
 .portfolio-achievements,
-.portfolio-skills,
 .portfolio-works,
 .portfolio-contacts {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(3, 1fr);
 	gap: 20px;
 	list-style: none;
 }
 
-.card-achievements,
-.card-skills,
-.card-work,
-.card-contacts {
+.card,
+.work-card,
+.skill-card {
 	height: 100%;
-	padding: 20px;
-	background-color: #ffffff;
+	padding: 22px;
+	background-color: white;
 	border: 1px solid #d1d5db;
 	border-radius: 8px;
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
-.card-achievements,
-.card-skills,
-.card-contacts {
+.card {
 	text-align: center;
 }
 
-.card-article__title {
-	margin-bottom: 12px;
-	color: #2c3e50;
-	font-size: 20px;
-}
-
-.card-article__description {
-	color: #4b5563;
-}
-
-.card-link {
-	display: inline-block;
-	margin-top: 15px;
+.card a,
+.work-card a {
 	color: #2563eb;
 	font-weight: bold;
 	text-decoration: none;
 	overflow-wrap: anywhere;
 }
 
-.card-link:hover {
+.card a:hover,
+.work-card a:hover {
 	text-decoration: underline;
+}
+
+.work-card p {
+	margin-bottom: 15px;
+}
+
+.loading-message {
+	grid-column: 1 / -1;
+	text-align: center;
+}
+
+.skills-slider {
+	max-width: 700px;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 20px;
+}
+
+.skill-card {
+	width: 300px;
+	min-height: 120px;
+	text-align: center;
+}
+
+.slider-button,
+.open-modal-button,
+.submit-button {
+	padding: 10px 16px;
+	color: white;
+	background-color: #2c3e50;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.slider-button:hover,
+.open-modal-button:hover,
+.submit-button:hover {
+	background-color: #1f2937;
+}
+
+.open-modal-button {
+	display: block;
+	margin: 30px auto 0;
+}
+
+.modal {
+	position: fixed;
+	inset: 0;
+	z-index: 20;
+	display: none;
+	padding: 20px;
+	background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-content {
+	position: relative;
+	width: 100%;
+	max-width: 500px;
+	margin: 80px auto;
+	padding: 30px;
+	background-color: white;
+	border-radius: 8px;
+}
+
+.modal-close {
+	position: absolute;
+	top: 10px;
+	right: 15px;
+	color: #2c3e50;
+	background: none;
+	border: none;
+	font-size: 30px;
+	cursor: pointer;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+input,
+textarea {
+	margin-bottom: 12px;
+	padding: 10px;
+	font: inherit;
+	border: 1px solid #9ca3af;
+	border-radius: 5px;
+}
+
+.form-error {
+	min-height: 20px;
+	color: #dc2626;
+}
+
+.form-success {
+	min-height: 20px;
+	color: #16a34a;
+}
+
+.scroll-top-button {
+	position: fixed;
+	right: 25px;
+	bottom: 25px;
+	display: none;
+	width: 45px;
+	height: 45px;
+	color: white;
+	background-color: #2c3e50;
+	border: none;
+	border-radius: 50%;
+	font-size: 24px;
+	cursor: pointer;
 }
 
 footer {
 	padding: 25px 20px;
-	color: #ffffff;
+	color: white;
 	background-color: #2c3e50;
 	text-align: center;
 }
 
-/* Планшет: от 768px до 1023px */
+footer a {
+	color: white;
+}
+
+/* Планшет: 768px–1023px */
 @media (min-width: 768px) and (max-width: 1023px) {
 	.portfolio-achievements,
-	.portfolio-skills,
 	.portfolio-works,
 	.portfolio-contacts {
 		grid-template-columns: repeat(2, 1fr);
@@ -158,19 +283,23 @@ footer {
 
 /* Телефон: до 767px */
 @media (max-width: 767px) {
-	header {
-		padding: 16px;
-	}
-
 	.header-content {
-		flex-direction: column;
-		text-align: center;
+		flex-wrap: wrap;
 	}
 
-	nav ul {
-		justify-content: center;
+	.menu-button {
+		display: block;
+	}
+
+	nav {
+		display: none;
+		width: 100%;
+	}
+
+	.nav-list {
+		flex-direction: column;
 		gap: 12px;
-		flex-wrap: wrap;
+		padding-top: 10px;
 	}
 
 	main {
@@ -178,7 +307,7 @@ footer {
 	}
 
 	section {
-		margin-bottom: 50px;
+		margin-bottom: 55px;
 	}
 
 	h1 {
@@ -190,9 +319,21 @@ footer {
 	}
 
 	.portfolio-achievements,
-	.portfolio-skills,
 	.portfolio-works,
 	.portfolio-contacts {
 		grid-template-columns: 1fr;
+	}
+
+	.skills-slider {
+		flex-wrap: wrap;
+	}
+
+	.skill-card {
+		width: 100%;
+		order: -1;
+	}
+
+	.modal-content {
+		margin: 30px auto;
 	}
 }
