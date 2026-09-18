@@ -3,46 +3,53 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Портфолио | Вилл Максим</title>
+		<meta name="description" content="Портфолио студента КемГУ Вилла Максима" />
+		<title>Портфолио</title>
 		<link rel="stylesheet" href="css/style.css" />
 	</head>
+
 	<body>
 		<header>
-			<img
-				src="images/logo.svg"
-				width="200"
-				height="120"
-				alt="Логотип Портфолио"
-			/>
-			<nav>
-				<ul>
-					<li><a href="#about">О себе</a></li>
-					<li><a href="#skills">Навыки</a></li>
-					<li><a href="#works">Примеры работ</a></li>
-					<li><a href="#contacts">Контакты</a></li>
-				</ul>
-			</nav>
+			<div class="header-content">
+				<a class="logo" href="#about">Портфолио</a>
+
+				<nav>
+					<ul>
+						<li><a href="#about">О себе</a></li>
+						<li><a href="#skills">Навыки</a></li>
+						<li><a href="#works">Примеры работ</a></li>
+						<li><a href="#contacts">Контакты</a></li>
+					</ul>
+				</nav>
+			</div>
 		</header>
 
 		<main>
 			<section id="about">
 				<h1>О себе</h1>
-				<p>Вилл Максим, ФИТ-241</p>
-				<p>Студент КемГУ из института цифры</p>
+
+				<div class="about-text">
+					<p>Вилл Максим, группа ФИТ-241.</p>
+					<p>Студент КемГУ, институт «Институт цифры».</p>
+				</div>
+
+				<h2>Достижения</h2>
+
 				<ul class="portfolio-achievements">
 					<li>
 						<article class="card-achievements">
-							<h2 class="card-article__title">Достижение №1</h2>
-							<div class="portfolio-work"></div>
-							<p class="card-article__description">Доучился до 3-го курса.</p>
+							<h3 class="card-article__title">Достижение №1</h3>
+							<p class="card-article__description">
+								Доучился до 3-го курса без отчислений.
+							</p>
 						</article>
 					</li>
+
 					<li>
 						<article class="card-achievements">
-							<h2 class="card-article__title">Достижение №2</h2>
-							<div class="portfolio-work"></div>
+							<h3 class="card-article__title">Достижение №2</h3>
 							<p class="card-article__description">
-								Всегда работаю, но всё равно успеваю в учебе.
+								Работаю и успешно совмещаю работу с учёбой.
 							</p>
 						</article>
 					</li>
@@ -51,29 +58,33 @@
 
 			<section id="skills">
 				<h2>Навыки</h2>
+
 				<ul class="portfolio-skills">
 					<li>
 						<article class="card-skills">
-							<h2 class="card-article__title">C++</h2>
-							<div class="portfolio-work"></div>
+							<h3 class="card-article__title">C++</h3>
+							<p class="card-article__description">Базовый уровень</p>
 						</article>
 					</li>
+
 					<li>
 						<article class="card-skills">
-							<h2 class="card-article__title">Python</h2>
-							<div class="portfolio-work"></div>
+							<h3 class="card-article__title">Python</h3>
+							<p class="card-article__description">Средний уровень</p>
 						</article>
 					</li>
+
 					<li>
 						<article class="card-skills">
-							<h2 class="card-article__title">Java</h2>
-							<div class="portfolio-work"></div>
+							<h3 class="card-article__title">Java</h3>
+							<p class="card-article__description">Базовый уровень</p>
 						</article>
 					</li>
+
 					<li>
 						<article class="card-skills">
-							<h2 class="card-article__title">JS</h2>
-							<div class="portfolio-work"></div>
+							<h3 class="card-article__title">JavaScript</h3>
+							<p class="card-article__description">Базовый уровень</p>
 						</article>
 					</li>
 				</ul>
@@ -81,69 +92,75 @@
 
 			<section id="works">
 				<h2>Примеры работ</h2>
+
 				<ul class="portfolio-works">
 					<li>
 						<article class="card-work">
-							<h2 class="card-article__title">Финансовый трекер</h2>
-							<div class="portfolio-work"></div>
+							<h3 class="card-article__title">Финансовый трекер</h3>
 							<p class="card-article__description">
-								<a
-									href="https://github.com/MaximVill/FinanceTracker"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									github.com/MaximVill/FinanceTracker
-								</a>
+								Приложение для учёта личных доходов и расходов.
 							</p>
+							<a
+								class="card-link"
+								href="https://github.com/MaximVill/FinanceTracker"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								Открыть на GitHub
+							</a>
 						</article>
 					</li>
+
 					<li>
 						<article class="card-work">
-							<h2 class="card-article__title">Телеграм-бот для геймеров</h2>
-							<div class="portfolio-work"></div>
+							<h3 class="card-article__title">Телеграм-бот для геймеров</h3>
 							<p class="card-article__description">
-								<a
-									href="https://github.com/MaximVill/game-assistant-bot"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									github.com/MaximVill/game-assistant-bot
-								</a>
+								Бот для помощи игрокам и поиска игровой информации.
 							</p>
+							<a
+								class="card-link"
+								href="https://github.com/MaximVill/game-assistant-bot"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								Открыть на GitHub
+							</a>
 						</article>
 					</li>
+
 					<li>
 						<article class="card-work">
-							<h2 class="card-article__title">
+							<h3 class="card-article__title">
 								Приложение для просмотра космоса
-							</h2>
-							<div class="portfolio-work"></div>
+							</h3>
 							<p class="card-article__description">
-								<a
-									href="https://github.com/MaximVill/SpaceToday"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									github.com/MaximVill/SpaceToday
-								</a>
+								Приложение для просмотра информации о космосе.
 							</p>
+							<a
+								class="card-link"
+								href="https://github.com/MaximVill/SpaceToday"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								Открыть на GitHub
+							</a>
 						</article>
 					</li>
+
 					<li>
 						<article class="card-work">
-							<h2 class="card-article__title">
-								Игра-платформер (групповой проект)
-							</h2>
-							<div class="portfolio-work"></div>
+							<h3 class="card-article__title">Игра-платформер</h3>
 							<p class="card-article__description">
-								<a
-									href="https://github.com/wh076/Showdown"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									github.com/wh076/Showdown
-								</a>
+								Групповой проект: игра в жанре платформер.
 							</p>
+							<a
+								class="card-link"
+								href="https://github.com/wh076/Showdown"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								Открыть на GitHub
+							</a>
 						</article>
 					</li>
 				</ul>
@@ -151,46 +168,42 @@
 
 			<section id="contacts">
 				<h2>Контакты</h2>
+
 				<ul class="portfolio-contacts">
 					<li>
 						<article class="card-contacts">
-							<h2 class="card-article__title">Email</h2>
-							<div class="portfolio-work"></div>
-							<p class="card-article__description">
-								<a href="mailto:your.email@example.com"
-									>studmaximvill06@gmail.com</a
-								>
-							</p>
+							<h3 class="card-article__title">Email</h3>
+							<a class="card-link" href="mailto:studmaximvill06@gmail.com">
+								studmaximvill06@gmail.com
+							</a>
 						</article>
 					</li>
+
 					<li>
 						<article class="card-contacts">
-							<h2 class="card-article__title">Telegram</h2>
-							<div class="portfolio-work"></div>
-							<p class="card-article__description">
-								<a
-									href="https://t.me/ommelauren"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									@ommelauren
-								</a>
-							</p>
+							<h3 class="card-article__title">Telegram</h3>
+							<a
+								class="card-link"
+								href="https://t.me/ommelauren"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								@ommelauren
+							</a>
 						</article>
 					</li>
+
 					<li>
 						<article class="card-contacts">
-							<h2 class="card-article__title">GitHub</h2>
-							<div class="portfolio-work"></div>
-							<p class="card-article__description">
-								<a
-									href="https://github.com/MaximVill"
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									github.com/MaximVill
-								</a>
-							</p>
+							<h3 class="card-article__title">GitHub</h3>
+							<a
+								class="card-link"
+								href="https://github.com/MaximVill"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								github.com/MaximVill
+							</a>
 						</article>
 					</li>
 				</ul>
@@ -198,7 +211,7 @@
 		</main>
 
 		<footer>
-			<p>&copy; 2026 Вилл Максим</p>
+			<p>&copy; 2026 Вилл Максим, ФИТ-241</p>
 		</footer>
 	</body>
 </html>
