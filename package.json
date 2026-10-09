@@ -1,7 +1,7 @@
 {
-	"name": "web--",
+	"name": "todo-list-lab4",
 	"version": "1.0.0",
-	"description": "Препроцессор Sass — рефакторинг стилей сайта-визитки",
+	"description": "To-Do List Application - Lab 4",
 	"main": "index.js",
 	"scripts": {
 		"sass:dev": "sass --watch scss/main.scss:dist/css/main.css",
