@@ -1,4 +1,38 @@
 $(document).ready(function () {
+	const $html = $('html')
+	const $themeToggleBtn = $('.js-theme-toggle')
+
+	// Проверяем localStorage
+	let currentTheme = localStorage.getItem('theme')
+
+	// Если в localStorage пусто, проверяем системную тему пользователя
+	if (!currentTheme) {
+		const prefersDark = window.matchMedia(
+			'(prefers-color-scheme: dark)',
+		).matches
+		currentTheme = prefersDark ? 'dark' : 'light'
+	}
+
+	// Применяем тему при загрузке
+	if (currentTheme === 'dark') {
+		$html.attr('data-theme', 'dark')
+	}
+
+	// Обработчик клика на переключатель
+	$themeToggleBtn.on('click', function () {
+		const isDark = $html.attr('data-theme') === 'dark'
+
+		if (isDark) {
+			$html.removeAttr('data-theme')
+			localStorage.setItem('theme', 'light')
+		} else {
+			$html.attr('data-theme', 'dark')
+			localStorage.setItem('theme', 'dark')
+		}
+	})
+})
+
+$(document).ready(function () {
 	const skills = [
 		{
 			name: 'Python',

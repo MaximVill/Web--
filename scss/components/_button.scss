@@ -1,0 +1,45 @@
+@use '../utils' as *;
+
+.button {
+	@include flex-center;
+	padding: rem(12) rem(24);
+	border: none;
+	border-radius: rem(4);
+	cursor: pointer;
+	font-family: inherit;
+	font-size: rem(16);
+	transition:
+		background-color 0.2s,
+		transform 0.1s;
+
+	// Базовые состояния
+	&:focus-visible {
+		outline: 2px solid var(--color-text-color);
+		outline-offset: 2px;
+	}
+
+	&:active {
+		transform: scale(0.98);
+	}
+
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
+	// Модификатор 1: Главная кнопка
+	&--primary {
+		background-color: var(--color-primary-color);
+		color: #fff; // Текст на primary кнопке всегда светлый
+
+		&:hover:not(:disabled) {
+			background-color: var(--color-primary-hover);
+		}
+	}
+
+	// Модификатор 2: Маленькая кнопка
+	&--small {
+		padding: rem(8) rem(16);
+		font-size: rem(14);
+	}
+}
