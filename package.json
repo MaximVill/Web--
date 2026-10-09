@@ -1,0 +1,23 @@
+{
+	"name": "web--",
+	"version": "1.0.0",
+	"description": "Препроцессор Sass — рефакторинг стилей сайта-визитки",
+	"main": "index.js",
+	"scripts": {
+		"sass:dev": "sass --watch scss/main.scss:dist/css/main.css",
+		"build": "sass --no-source-map --style=compressed scss/main.scss:dist/css/main.css"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/MaximVill/Web--.git"
+	},
+	"keywords": [],
+	"type": "commonjs",
+	"bugs": {
+		"url": "https://github.com/MaximVill/Web--/issues"
+	},
+	"homepage": "https://github.com/MaximVill/Web--#readme",
+	"devDependencies": {
+		"sass": "^1.105.1"
+	}
+}
