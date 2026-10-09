@@ -1,0 +1,21 @@
+@use 'sass:map';
+@use 'variables' as *;
+
+// Миксин для медиа-запросов
+@mixin respond-to($breakpoint) {
+	@if map.has-key($breakpoints, $breakpoint) {
+		$value: map.get($breakpoints, $breakpoint);
+		@media (min-width: $value) {
+			@content;
+		}
+	} @else {
+		@error "Неизвестный брейкпоинт: #{$breakpoint}. Доступны: #{map.keys($breakpoints)}";
+	}
+}
+
+// Центрирование флексом
+@mixin flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

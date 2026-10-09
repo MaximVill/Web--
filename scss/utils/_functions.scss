@@ -1,0 +1,10 @@
+@use 'sass:math';
+
+// Функция для перевода px в rem
+@function rem($pixels) {
+	@if math.is-unitless($pixels) {
+		@return math.div($pixels, 16) * 1rem;
+	} @else {
+		@error "Не используйте единицы измерения при вызове rem(). Передайте просто число.";
+	}
+}
