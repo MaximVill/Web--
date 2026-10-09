@@ -1,12 +1,7 @@
-@use 'utils/variables' as *;
-@use 'utils/mixins' as *;
-@use 'themes/themes';
-@use 'base/reset';
-@use 'base/typography';
-
-// Placeholders for upcoming modules
-@use 'layout/grid';
+// Layouts
 @use 'layout/page';
+
+// Components
 @use 'components/button';
 @use 'components/task';
 @use 'components/modal';

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="ru" data-theme="light">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Доступный To-Do List</title>
+		<link rel="stylesheet" href="dist/css/main.css" />
+	</head>
+	<body>
+		<div class="page">
+			<header class="page__header">
+				<h1>Мои задачи</h1>
+				<button
+					type="button"
+					class="js-theme-toggle theme-toggle"
+					aria-label="Переключить тему"
+				>
+					<span class="theme-toggle__icon">🌙</span>
+				</button>
+			</header>
+
+			<main class="page__main">
+				<div class="controls">
+					<div class="search-container">
+						<label for="task-search" class="visually-hidden">Поиск задач</label>
+						<input
+							type="search"
+							id="task-search"
+							class="js-search"
+							placeholder="Найти задачу..."
+						/>
+					</div>
+					<button
+						type="button"
+						class="js-add-task btn-primary"
+						id="btn-open-modal"
+					>
+						Добавить задачу
+					</button>
+				</div>
+
+				<section class="tasks-section">
+					<h2 id="list-heading">Список задач</h2>
+					<ul class="task-list js-task-list" aria-labelledby="list-heading">
+						<!-- Задачи будут добавляться сюда динамически -->
+					</ul>
+				</section>
+			</main>
+
+			<!-- Модальное окно создания/редактирования задачи -->
+			<dialog class="modal js-task-dialog" aria-labelledby="dialog-title">
+				<form method="dialog" class="modal__form">
+					<h2 id="dialog-title">Новая задача</h2>
+
+					<div class="form-group">
+						<label for="task-title">Название задачи</label>
+						<input
+							type="text"
+							id="task-title"
+							name="title"
+							required
+							autofocus
+							placeholder="Введите название..."
+						/>
+					</div>
+
+					<div class="modal__actions">
+						<button type="button" class="js-close-dialog btn-secondary">
+							Отмена
+						</button>
+						<button type="submit" class="btn-primary">Сохранить</button>
+					</div>
+				</form>
+			</dialog>
+		</div>
+
+		<script src="js/main.js"></script>
+	</body>
+</html>
