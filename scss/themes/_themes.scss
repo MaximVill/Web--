@@ -1,38 +1,13 @@
-$theme-light: (
-	bg-color: #ffffff,
-	text-color: #333333,
-	primary-color: #007bff,
-	primary-hover: #0056b3,
-	border-color: #dddddd,
-);
+@use '../utils' as *;
 
-$theme-dark: (
-	bg-color: #121212,
-	text-color: #e0e0e0,
-	primary-color: #bb86fc,
-	primary-hover: #9965f4,
-	border-color: #333333,
-);
-
-// Светлая тема (по умолчанию)
 :root {
-	@each $name, $value in $theme-light {
-		--color-#{$name}: #{$value};
-	}
+  @each $name, $value in $theme-light {
+    --color-#{$name}: #{$value};
+  }
 }
 
-// Темная тема
 [data-theme='dark'] {
-	@each $name, $value in $theme-dark {
-		--color-#{$name}: #{$value};
-	}
-}
-
-// Глобальные стили для применения цветов
-body {
-	background-color: var(--color-bg-color);
-	color: var(--color-text-color);
-	transition:
-		background-color 0.3s ease,
-		color 0.3s ease;
+  @each $name, $value in $theme-dark {
+    --color-#{$name}: #{$value};
+  }
 }

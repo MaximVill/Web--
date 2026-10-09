@@ -7,14 +7,21 @@
 		<title>Портфолио</title>
 
 		<link rel="stylesheet" href="dist/css/main.css" />
+		<!-- <link rel="stylesheet" href="css/style.css" /> -->
 	</head>
+
 
 	<body>
 		<header>
 			<div class="header-content">
 				<a class="logo" href="#about">Портфолио</a>
 
-				<button class="menu-button" type="button" aria-label="Открыть меню">
+				<button
+					button
+					class="button button--outline js-menu-toggle"
+					type="button"
+					aria-label="Открыть меню"
+				>
 					Меню
 				</button>
 
@@ -35,16 +42,16 @@
 
 		<main>
 			<section id="about">
-				<h1>О себе</h1>
+				<h1 class="title-main">О себе</h1>
 
-				<div class="about-text">
+				<div class="text-block">
 					<p>Вилл Максим, группа ФИТ-241.</p>
 					<p>Студент КемГУ, институт «Институт цифры».</p>
 				</div>
 
-				<h2>Достижения</h2>
+				<h2 class="title-section">Достижения</h2>
 
-				<ul class="portfolio-achievements">
+				<ul class="grid">
 					<li>
 						<article class="card">
 							<h3>Достижение №1</h3>
@@ -62,36 +69,44 @@
 			</section>
 
 			<section id="skills">
-				<h2>Навыки</h2>
+				<h2 class="title-section">Навыки</h2>
 
-				<div class="skills-slider">
-					<button class="slider-button" id="prev-skill" type="button">
+				<div class="slider js-skills-slider">
+					<button
+						class="button button--outline js-skill-prev"
+						id="prev-skill"
+						type="button"
+					>
 						Предыдущий
 					</button>
 
-					<article class="skill-card">
+					<article class="card js-skill-card">
 						<h3 id="skill-name">Python</h3>
 						<p id="skill-level">Средний уровень</p>
 					</article>
 
-					<button class="slider-button" id="next-skill" type="button">
+					<button
+						class="button button--outline js-skill-next"
+						id="next-skill"
+						type="button"
+					>
 						Следующий
 					</button>
 				</div>
 			</section>
 
 			<section id="works">
-				<h2>Примеры работ</h2>
+				<h2 class="title-section">Примеры работ</h2>
 
-				<ul class="portfolio-works" id="portfolio-list">
+				<ul class="grid" id="portfolio-list">
 					<li class="loading-message">Загрузка работ...</li>
 				</ul>
 			</section>
 
 			<section id="contacts">
-				<h2>Контакты</h2>
+				<h2 class="title-section">Контакты</h2>
 
-				<ul class="portfolio-contacts">
+				<ul class="grid">
 					<li>
 						<article class="card">
 							<h3>Email</h3>
@@ -128,17 +143,23 @@
 					</li>
 				</ul>
 
-				<button class="open-modal-button" type="button">Написать мне</button>
+				<button class="button button--primary js-modal-open" type="button">
+					Написать мне
+				</button>
 			</section>
 		</main>
 
-		<div class="modal" id="contact-modal">
-			<div class="modal-content">
-				<button class="modal-close" type="button" aria-label="Закрыть окно">
+		<div class="modal js-modal" id="contact-modal">
+			<div class="modal__content">
+				<button
+					class="modal__close js-modal-close"
+					type="button"
+					aria-label="Закрыть окно"
+				>
 					×
 				</button>
 
-				<h2>Обратная связь</h2>
+				<h2 class="modal__title">Обратная связь</h2>
 
 				<form id="contact-form">
 					<label for="name">Имя</label>
@@ -163,12 +184,18 @@
 					<p class="form-error" id="form-error"></p>
 					<p class="form-success" id="form-success"></p>
 
-					<button class="submit-button" type="submit">Отправить</button>
+					<button class="button button--primary js-form-submit" type="submit">
+						Отправить
+					</button>
 				</form>
 			</div>
 		</div>
 
-		<button class="scroll-top-button" type="button" aria-label="Наверх">
+		<button
+			class="button button--outline js-scroll-top"
+			type="button"
+			aria-label="Наверх"
+		>
 			↑
 		</button>
 

@@ -58,7 +58,7 @@ $(document).ready(function () {
 		$('#skill-name').text(skills[currentSkill].name)
 		$('#skill-level').text(skills[currentSkill].level)
 
-		$('.skill-card').hide().fadeIn(300)
+		$('.js-skill-card').hide().fadeIn(300)
 	}
 
 	function nextSkill() {
@@ -71,12 +71,12 @@ $(document).ready(function () {
 		showSkill()
 	}
 
-	$('#next-skill').on('click', nextSkill)
-	$('#prev-skill').on('click', prevSkill)
+	$('.js-skill-next').on('click', nextSkill)
+	$('.js-skill-prev').on('click', prevSkill)
 
 	setInterval(nextSkill, 4000)
 
-	$('.menu-button').on('click', function () {
+	$('.js-menu-toggle').on('click', function () {
 		$('nav').slideToggle(300)
 	})
 
@@ -120,11 +120,11 @@ $(document).ready(function () {
 			)
 		})
 
-	$('.open-modal-button').on('click', function () {
+	$('.js-modal-open').on('click', function () {
 		$('#contact-modal').fadeIn(300)
 	})
 
-	$('.modal-close').on('click', function () {
+	$('.js-modal-close').on('click', function () {
 		$('#contact-modal').fadeOut(300)
 	})
 
@@ -187,9 +187,9 @@ $(document).ready(function () {
 		const scrollPosition = $(window).scrollTop()
 
 		if (scrollPosition > 300) {
-			$('.scroll-top-button').fadeIn(200)
+			$('.js-scroll-top').fadeIn(200)
 		} else {
-			$('.scroll-top-button').fadeOut(200)
+			$('.js-scroll-top').fadeOut(200)
 		}
 
 		$('main section').each(function () {
@@ -204,7 +204,7 @@ $(document).ready(function () {
 		})
 	})
 
-	$('.scroll-top-button').on('click', function () {
+	$('.js-scroll-top').on('click', function () {
 		$('html, body').animate(
 			{
 				scrollTop: 0,

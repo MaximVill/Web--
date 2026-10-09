@@ -1,45 +1,55 @@
 @use '../utils' as *;
 
 .button {
-	@include flex-center;
-	padding: rem(12) rem(24);
-	border: none;
-	border-radius: rem(4);
-	cursor: pointer;
-	font-family: inherit;
-	font-size: rem(16);
-	transition:
-		background-color 0.2s,
-		transform 0.1s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: rem(10px) rem(20px);
+  border-radius: $radius-md;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: rem(14px);
+  transition: all $transition-base;
+  gap: rem(8px);
 
-	// Базовые состояния
-	&:focus-visible {
-		outline: 2px solid var(--color-text-color);
-		outline-offset: 2px;
-	}
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
 
-	&:active {
-		transform: scale(0.98);
-	}
+  &:active {
+    transform: translateY(0);
+  }
 
-	&:disabled {
-		opacity: 0.5;
-		cursor: not-allowed;
-	}
+  &:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
 
-	// Модификатор 1: Главная кнопка
-	&--primary {
-		background-color: var(--color-primary-color);
-		color: #fff; // Текст на primary кнопке всегда светлый
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
 
-		&:hover:not(:disabled) {
-			background-color: var(--color-primary-hover);
-		}
-	}
+  &--primary {
+    background-color: var(--color-accent);
+    color: #ffffff;
 
-	// Модификатор 2: Маленькая кнопка
-	&--small {
-		padding: rem(8) rem(16);
-		font-size: rem(14);
-	}
+    &:hover {
+      background-color: var(--color-accent-hover);
+    }
+  }
+
+  &--outline {
+    background-color: transparent;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-main);
+
+    &:hover {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+    }
+  }
 }
