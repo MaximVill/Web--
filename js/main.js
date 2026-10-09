@@ -1,177 +1,197 @@
 class StorageService {
-	static KEY = 'todo_tasks'
+    static KEY = 'todo_tasks';
 
-	static save(tasks) {
-		try {
-			localStorage.setItem(this.KEY, JSON.stringify(tasks))
-		} catch (e) {
-			console.error('Error saving to localStorage:', e)
-		}
-	}
+    static save(tasks) {
+        try {
+            localStorage.setItem(this.KEY, JSON.stringify(tasks));
+        } catch (e) {
+            console.error('Error saving to localStorage:', e);
+        }
+    }
 
-	static load() {
-		try {
-			const data = localStorage.getItem(this.KEY)
-			return data ? JSON.parse(data) : []
-		} catch (e) {
-			console.error(
-				'Error loading from localStorage, resetting to empty list:',
-				e,
-			)
-			return []
-		}
-	}
+    static load() {
+        try {
+            const data = localStorage.getItem(this.KEY);
+            return data ? JSON.parse(data) : [];
+        } catch (e) {
+            console.error('Error loading from localStorage, resetting to empty list:', e);
+            return [];
+        }
+    }
 }
 
 class TaskController {
-	constructor() {
-		this.tasks = StorageService.load()
-		this.elements = {
-			list: document.querySelector('.js-task-list'),
-			dialog: document.querySelector('.js-task-dialog'),
-			addBtn: document.querySelector('.js-add-task'),
-			closeBtn: document.querySelector('.js-close-dialog'),
-			form: document.querySelector('.modal__form'),
-			input: document.querySelector('#task-title'),
-			search: document.querySelector('.js-search'),
-			themeToggle: document.querySelector('.js-theme-toggle'),
-		}
+    constructor() {
+        this.tasks = StorageService.load();
+        this.elements = {
+            list: document.querySelector('.js-task-list'),
+            dialog: document.querySelector('.js-task-dialog'),
+            addBtn: document.querySelector('.js-add-task'),
+            closeBtn: document.querySelector('.js-close-dialog'),
+            form: document.querySelector('.modal__form'),
+            input: document.querySelector('#task-title'),
+            search: document.querySelector('.js-search'),
+            themeToggle: document.querySelector('.js-theme-toggle')
+        };
 
-		this.editingId = null
-		this.init()
-	}
+        this.editingId = null;
+        this.init();
+    }
 
-	init() {
-		this.render()
-		this.setupEventListeners()
-		this.initTheme()
-	}
+    init() {
+        this.render();
+        this.setupEventListeners();
+        this.initTheme();
+        this.setupLiveRegion();
+    }
 
-	setupEventListeners() {
-		// Модальное управление
-		this.elements.addBtn.addEventListener('click', () => this.openModal())
-		this.elements.closeBtn.addEventListener('click', () =>
-			this.elements.dialog.close(),
-		)
+    setupLiveRegion() {
+        // Create an aria-live region for announcing search results
+        this.liveRegion = document.createElement('div');
+        this.liveRegion.className = 'visually-hidden';
+        this.liveRegion.setAttribute('aria-live', 'polite');
+        document.body.appendChild(this.liveRegion);
+    }
 
-		this.elements.form.addEventListener('submit', (e) => {
-			e.preventDefault()
-			this.saveTask()
-			this.elements.dialog.close()
-		})
+    setupEventListeners() {
+        this.elements.addBtn.addEventListener('click', () => this.openModal());
+        this.elements.closeBtn.addEventListener('click', () => this.elements.dialog.close());
 
-		// Поиск
-		this.elements.search.addEventListener('input', () => this.render())
+        this.elements.form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.saveTask();
+            this.elements.dialog.close();
+        });
 
-		// Тема
-		this.elements.themeToggle.addEventListener('click', () =>
-			this.toggleTheme(),
-		)
-	}
+        this.elements.search.addEventListener('input', () => {
+            this.render();
+            this.announceResults();
+        });
 
-	openModal(id = null) {
-		this.editingId = id
-		if (id) {
-			const task = this.tasks.find((t) => t.id === id)
-			this.elements.input.value = task ? task.title : ''
-			document.querySelector('#dialog-title').textContent =
-				'Редактировать задачу'
-		} else {
-			this.elements.input.value = ''
-			document.querySelector('#dialog-title').textContent = 'Новая задача'
-		}
-		this.elements.dialog.showModal()
-	}
+        this.elements.themeToggle.addEventListener('click', () => this.toggleTheme());
+    }
 
-	saveTask() {
-		const title = this.elements.input.value.trim()
-		if (!title) return
+    announceResults() {
+        const count = this.elements.list.children.length;
+        const query = this.elements.search.value;
+        if (query) {
+            this.liveRegion.textContent = `Найдено задач: ${count}`;
+        } else {
+            this.liveRegion.textContent = '';
+        }
+    }
 
-		if (this.editingId) {
-			this.tasks = this.tasks.map((t) =>
-				t.id === this.editingId ? { ...t, title } : t,
-			)
-		} else {
-			const newTask = {
-				id: Date.now().toString(),
-				title: title,
-				done: false,
-			}
-			this.tasks.push(newTask)
-		}
+    openModal(id = null) {
+        this.editingId = id;
+        if (id) {
+            const task = this.tasks.find(t => t.id === id);
+            this.elements.input.value = task ? task.title : '';
+            document.querySelector('#dialog-title').textContent = 'Редактировать задачу';
+        } else {
+            this.elements.input.value = '';
+            document.querySelector('#dialog-title').textContent = 'Новая задача';
+        }
+        this.elements.dialog.showModal();
+    }
 
-		StorageService.save(this.tasks)
-		this.render()
-	}
+    saveTask() {
+        const title = this.elements.input.value.trim();
+        if (!title) return;
 
-	toggleTask(id) {
-		this.tasks = this.tasks.map((t) =>
-			t.id === id ? { ...t, done: !t.done } : t,
-		)
-		StorageService.save(this.tasks)
-		this.render()
-	}
+        if (this.editingId) {
+            this.tasks = this.tasks.map(t =>
+                t.id === this.editingId ? { ...t, title } : t
+            );
+        } else {
+            const newTask = {
+                id: Date.now().toString(),
+                title: title,
+                done: false
+            };
+            this.tasks.push(newTask);
+        }
 
-	deleteTask(id) {
-		const itemToRemove = this.elements.list.querySelector(`[data-id="${id}"]`)
-		this.tasks = this.tasks.filter((t) => t.id !== id)
-		StorageService.save(this.tasks)
-		this.render()
-		this.manageFocusAfterDelete(itemToRemove)
-	}
+        StorageService.save(this.tasks);
+        this.render();
+    }
 
-	manageFocusAfterDelete(removedElement) {
-		const tasks = [...document.querySelectorAll('.task-item')]
-		if (tasks.length === 0) {
-			this.elements.addBtn.focus()
-			return
-		}
+    toggleTask(id) {
+        this.tasks = this.tasks.map(t =>
+            t.id === id ? { ...t, done: !t.done } : t
+        );
+        StorageService.save(this.tasks);
+        this.render();
+    }
 
-		// Сосредоточьтесь на первой видимой задаче
-		tasks[0].querySelector('input').focus()
-	}
+    deleteTask(id) {
+        const itemToRemove = this.elements.list.querySelector(`[data-id="${id}"]`);
 
-	initTheme() {
-		const savedTheme = localStorage.getItem('theme') || 'light'
-		document.documentElement.setAttribute('data-theme', savedTheme)
-		this.updateThemeIcon(savedTheme)
-	}
+        this.tasks = this.tasks.filter(t => t.id !== id);
+        StorageService.save(this.tasks);
+        this.render();
 
-	toggleTheme() {
-		const currentTheme = document.documentElement.getAttribute('data-theme')
-		const newTheme = currentTheme === 'light' ? 'dark' : 'light'
+        this.manageFocusAfterDelete(itemToRemove);
+    }
 
-		document.documentElement.setAttribute('data-theme', newTheme)
-		localStorage.setItem('theme', newTheme)
-		this.updateThemeIcon(newTheme)
-	}
+    manageFocusAfterDelete(removedElement) {
+        const tasks = [...document.querySelectorAll('.task-item')];
 
-	updateThemeIcon(theme) {
-		this.elements.themeToggle.querySelector('.theme-toggle__icon').textContent =
-			theme === 'light' ? '🌙' : '☀️'
-	}
+        if (tasks.length === 0) {
+            this.elements.addBtn.focus();
+            return;
+        }
 
-	render() {
-		const query = this.elements.search.value.toLowerCase()
-		const filteredTasks = this.tasks.filter((t) =>
-			t.title.toLowerCase().includes(query),
-		)
+        // Try to focus the task that was immediately after the deleted one
+        // Since the DOM was already re-rendered by this.render(),
+        // we simply look for the first task if we don't have complex index tracking.
+        // To be more precise, we can focus the first task in the current filtered view.
+        const firstTaskInput = tasks[0].querySelector('input');
+        if (firstTaskInput) {
+            firstTaskInput.focus();
+        } else {
+            this.elements.addBtn.focus();
+        }
+    }
 
-		// Сортировка: сначала незавершенные, затем завершенные
-		const sortedTasks = [...filteredTasks].sort((a, b) => a.done - b.done)
+    initTheme() {
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        this.updateThemeIcon(savedTheme);
+    }
 
-		this.elements.list.innerHTML = ''
+    toggleTheme() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
 
-		sortedTasks.forEach((task) => {
-			const li = document.createElement('li')
-			li.className = `task-item ${task.done ? 'task-item--done' : ''}`
-			li.dataset.id = task.id
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        this.updateThemeIcon(newTheme);
+    }
 
-			// Уникальные идентификаторы
-			const checkboxId = `check-${task.id}`
-			const titleId = `title-${task.id}`
+    updateThemeIcon(theme) {
+        this.elements.themeToggle.querySelector('.theme-toggle__icon').textContent =
+            theme === 'light' ? '🌙' : '☀️';
+    }
 
-			li.innerHTML = `
+    render() {
+        const query = this.elements.search.value.toLowerCase();
+        const filteredTasks = this.tasks.filter(t =>
+            t.title.toLowerCase().includes(query)
+        );
+
+        const sortedTasks = [...filteredTasks].sort((a, b) => a.done - b.done);
+
+        this.elements.list.innerHTML = '';
+
+        sortedTasks.forEach(task => {
+            const li = document.createElement('li');
+            li.className = `task-item ${task.done ? 'task-item--done' : ''}`;
+            li.dataset.id = task.id;
+
+            const checkboxId = `check-${task.id}`;
+            const titleId = `title-${task.id}`;
+
+            li.innerHTML = `
                 <input type="checkbox" class="task-item__checkbox" id="${checkboxId}" ${task.done ? 'checked' : ''}>
                 <label for="${checkboxId}" class="task-item__title" id="${titleId}">${this.escapeHtml(task.title)}</label>
                 <div class="task-item__actions">
@@ -184,33 +204,24 @@ class TaskController {
                         ✕
                     </button>
                 </div>
-            `
+            `;
 
-			// События
-			li.querySelector('input').addEventListener('change', () =>
-				this.toggleTask(task.id),
-			)
-			li.querySelector('label').addEventListener('click', () =>
-				this.toggleTask(task.id),
-			)
-			li.querySelector('.btn-icon--edit').addEventListener('click', () =>
-				this.openModal(task.id),
-			)
-			li.querySelector('.btn-icon--delete').addEventListener('click', () =>
-				this.deleteTask(task.id),
-			)
+            li.querySelector('input').addEventListener('change', () => this.toggleTask(task.id));
+            li.querySelector('label').addEventListener('click', () => this.toggleTask(task.id));
+            li.querySelector('.btn-icon--edit').addEventListener('click', () => this.openModal(task.id));
+            li.querySelector('.btn-icon--delete').addEventListener('click', () => this.deleteTask(task.id));
 
-			this.elements.list.appendChild(li)
-		})
-	}
+            this.elements.list.appendChild(li);
+        });
+    }
 
-	escapeHtml(text) {
-		const div = document.createElement('div')
-		div.textContent = text
-		return div.innerHTML
-	}
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-	new TaskController()
-})
+    new TaskController();
+});
