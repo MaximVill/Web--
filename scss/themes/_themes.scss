@@ -1,28 +1,71 @@
-:root {
-  // Light theme (default)
-  --bg-color: #f8fafc;
-  --surface-color: #ffffff;
-  --text-main: #1e293b;
-  --text-muted: #64748b;
-  --border-color: #e2e8f0;
-  --accent-color: #3b82f6;
-  --accent-hover: #2563eb;
-  --danger-color: #ef4444;
-  --success-color: #22c55e;
-  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --focus-ring: 0 0 0 3px rgba(59, 130, 246, 0.5);
+@use '../utils' as *;
+
+$light: (
+  bg: #f5f5f5,
+  bg-glow: rgb(15 108 189 / 0.09),
+  bg-glow-alt: rgb(15 108 189 / 0.05),
+  surface: #ffffff,
+  surface-hover: #fafafa,
+  surface-pressed: #f0f0f0,
+  text: #242424,
+  text-muted: #5c5c5c,
+  border: #e0e0e0,
+  border-strong: #d1d1d1,
+  border-input-bottom: #616161,
+  accent: #0f6cbd,
+  accent-bg: #0f6cbd,
+  accent-bg-hover: #115ea3,
+  accent-bg-pressed: #0f548c,
+  accent-subtle: #ebf3fc,
+  on-accent: #ffffff,
+  danger: #b10e1c,
+  danger-subtle: #fdf3f4,
+  focus: #242424,
+  backdrop: rgb(0 0 0 / 0.4),
+  shadow-card: (0 0 2px rgb(0 0 0 / 0.12), 0 1px 2px rgb(0 0 0 / 0.14)),
+  shadow-card-hover: (0 0 2px rgb(0 0 0 / 0.12), 0 2px 4px rgb(0 0 0 / 0.14)),
+  shadow-dialog: (0 0 8px rgb(0 0 0 / 0.12), 0 32px 64px rgb(0 0 0 / 0.14)),
+);
+
+$dark: (
+  bg: #1f1f1f,
+  bg-glow: rgb(71 158 245 / 0.12),
+  bg-glow-alt: rgb(71 158 245 / 0.06),
+  surface: #292929,
+  surface-hover: #333333,
+  surface-pressed: #3d3d3d,
+  text: #ffffff,
+  text-muted: #adadad,
+  border: #3d3d3d,
+  border-strong: #525252,
+  border-input-bottom: #adadad,
+  accent: #479ef5,
+  accent-bg: #115ea3,
+  accent-bg-hover: #0f6cbd,
+  accent-bg-pressed: #0f548c,
+  accent-subtle: #0a2740,
+  on-accent: #ffffff,
+  danger: #dc626d,
+  danger-subtle: #3f1011,
+  focus: #ffffff,
+  backdrop: rgb(0 0 0 / 0.55),
+  shadow-card: (0 0 2px rgb(0 0 0 / 0.24), 0 1px 2px rgb(0 0 0 / 0.28)),
+  shadow-card-hover: (0 0 2px rgb(0 0 0 / 0.24), 0 2px 4px rgb(0 0 0 / 0.28)),
+  shadow-dialog: (0 0 8px rgb(0 0 0 / 0.24), 0 32px 64px rgb(0 0 0 / 0.28)),
+);
+
+@mixin emit-tokens($tokens) {
+  @each $name, $value in $tokens {
+    --#{$name}: #{$value};
+  }
 }
 
-[data-theme="dark"] {
-  --bg-color: #0f172a;
-  --surface-color: #1e293b;
-  --text-main: #f1f5f9;
-  --text-muted: #94a3b8;
-  --border-color: #334155;
-  --accent-color: #60a5fa;
-  --accent-hover: #93c5fd;
-  --danger-color: #f87171;
-  --success-color: #4ade80;
-  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.5);
-  --focus-ring: 0 0 0 3px rgba(96, 165, 250, 0.5);
+:root {
+  color-scheme: light;
+  @include emit-tokens($light);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  @include emit-tokens($dark);
 }

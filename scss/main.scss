@@ -1,9 +1,18 @@
-// Layouts
+// Tokens, themes
+@use 'utils';
+@use 'themes/themes';
+
+// Base
+@use 'base/reset';
+@use 'base/typography';
+@use 'base/utilities';
+
+// Layout
 @use 'layout/page';
 
 // Components
 @use 'components/button';
+@use 'components/search';
 @use 'components/task';
 @use 'components/modal';
-@use 'components/search';
 @use 'components/theme-switcher';
