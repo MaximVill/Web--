@@ -1,24 +1,20 @@
-# To-Do List Application (Lab 4)
+# Лабораторная работа 4
+To-Do List и доступность интерфейса (Sass → Tailwind CSS)
 
-**Author:** Maxim Vill
-**Group:** [Group Name]
+**Автор**: Вилл Максим ФИТ-241
 
-## Description
-This is a highly accessible To-Do List application implemented as part of Laboratory Work №4. The project demonstrates the use of Sass for structured styling and native HTML5 elements for maximum accessibility (a11y).
+## Установка и запуск
+Установите зависимости:
+```bash
+npm install
+```
 
-## Installation & Setup
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
-2. Run the Sass compiler in development mode:
-   ```bash
-   npm run sass:dev
-   ```
-3. Open `index.html` using a local server (e.g., Live Server extension in VS Code).
-
-## Build
-To generate the minified CSS for production:
+Запуск компилятора Sass в режиме разработки:
+```bash
+npm run sass:dev
+```
+ 
+## Сборка
 ```bash
 npm run build
 ```
