@@ -126,10 +126,33 @@
     `
   })
 
+  // --- ЗАДАНИЕ 4 ---
+  const Task4 = defineComponent({
+    setup() {
+      const tasks = ref([
+        { id: 1, title: 'Установить Vue' },
+        { id: 2, title: 'Разобраться с директивами' },
+        { id: 3, title: 'Сделать лабораторную' },
+        { id: 4, title: 'Сдать лабораторную' }
+      ])
+      return { tasks }
+    },
+    template: `
+      <div>
+        <h2>Задание 4. Список элементов</h2>
+        <ul>
+          <li v-for="(task, index) in tasks" :key="task.id">
+            {{ index + 1 }}. {{ task.title }}
+          </li>
+        </ul>
+      </div>
+    `
+  })
+
   createApp({
     setup() {
       const currentTab = ref(0)
-      const tabs = [Task1, Task2, Task3]
+      const tabs = [Task1, Task2, Task3, Task4]
       return { currentTab, tabs }
     }
   }).mount('#app')
