@@ -105,10 +105,31 @@
     `
   })
 
+  // --- ЗАДАНИЕ 3 ---
+  const Task3 = defineComponent({
+    setup() {
+      const isVisible = ref(false)
+      const toggle = () => {
+        isVisible.value = !isVisible.value
+      }
+      return { isVisible, toggle }
+    },
+    template: `
+      <div>
+        <h2>Задание 3. Условный рендеринг</h2>
+        <button @click="toggle">{{ isVisible ? 'Скрыть' : 'Показать' }} описание</button>
+        <p v-if="isVisible">
+          Vue — прогрессивный JavaScript-фреймворк для создания пользовательских интерфейсов.
+        </p>
+        <p v-else><i>Описание скрыто</i></p>
+      </div>
+    `
+  })
+
   createApp({
     setup() {
       const currentTab = ref(0)
-      const tabs = [Task1, Task2]
+      const tabs = [Task1, Task2, Task3]
       return { currentTab, tabs }
     }
   }).mount('#app')
