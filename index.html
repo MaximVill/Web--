@@ -73,7 +73,18 @@
 
   // --- ЗАДАНИЕ 1 ---
   const Task1 = defineComponent({
-    // ...
+    data() {
+      return {
+        name: 'Максим'
+      }
+    },
+    template: `
+      <div>
+        <h2>Задание 1. Привет, Vue!</h2>
+        <p>Привет, {{ name || 'незнакомец' }}!</p>
+        <input v-model="name" placeholder="Введите имя" />
+      </div>
+    `
   })
 
   // --- ЗАДАНИЕ 2 ---
