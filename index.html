@@ -149,10 +149,45 @@
     `
   })
 
+  // --- ЗАДАНИЕ 5 ---
+  const Task5 = defineComponent({
+    setup() {
+      const name = ref('')
+      const age = ref('')
+      const people = ref([])
+      let nextId = 1
+
+      const addPerson = () => {
+        if (!name.value.trim() || age.value === '') return
+        people.value.push({ id: nextId++, name: name.value.trim(), age: age.value })
+        name.value = ''
+        age.value = ''
+      }
+
+      return { name, age, people, addPerson }
+    },
+    template: `
+      <div>
+        <h2>Задание 5. Мини-форма</h2>
+        <form @submit.prevent="addPerson">
+          <input v-model="name" placeholder="Имя" />
+          <input v-model.number="age" type="number" min="0" placeholder="Возраст" />
+          <button type="submit">Добавить</button>
+        </form>
+        <ul v-if="people.length">
+          <li v-for="person in people" :key="person.id">
+            {{ person.name }}, {{ person.age }} лет
+          </li>
+        </ul>
+        <p v-else><i>Пока никого нет</i></p>
+      </div>
+    `
+  })
+
   createApp({
     setup() {
       const currentTab = ref(0)
-      const tabs = [Task1, Task2, Task3, Task4]
+      const tabs = [Task1, Task2, Task3, Task4, Task5]
       return { currentTab, tabs }
     }
   }).mount('#app')
