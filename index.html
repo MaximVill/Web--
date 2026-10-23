@@ -89,7 +89,20 @@
 
   // --- ЗАДАНИЕ 2 ---
   const Task2 = defineComponent({
-    // ...
+    setup() {
+      const count = ref(0)
+      const increment = () => {
+        count.value++
+      }
+      return { count, increment }
+    },
+    template: `
+      <div>
+        <h2>Задание 2. Реактивный счётчик</h2>
+        <p>Счётчик: {{ count }}</p>
+        <button @click="increment">+1</button>
+      </div>
+    `
   })
 
   createApp({
