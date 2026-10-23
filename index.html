@@ -69,7 +69,7 @@
 </div>
 
 <script>
-  const { createApp, ref, computed, defineComponent} = Vue
+  const { createApp, ref, computed, watch, onMounted, onUnmounted, defineComponent} = Vue
 
   // --- ЗАДАНИЕ 1 ---
   const Task1 = defineComponent({
@@ -203,10 +203,52 @@
     `
   })
 
+  // --- ЗАДАНИЕ 7 ---
+  const Task7 = defineComponent({
+    setup() {
+      const now = ref(new Date())
+      let timerId = null
+
+      const time = computed(() => now.value.toLocaleTimeString('ru-RU'))
+
+      const greeting = computed(() => {
+        const hour = now.value.getHours()
+        if (hour >= 5 && hour < 12) return 'Доброе утро'
+        if (hour >= 12 && hour < 17) return 'Добрый день'
+        if (hour >= 17 && hour < 23) return 'Добрый вечер'
+        return 'Доброй ночи'
+      })
+
+      watch(now, (newTime) => {
+        console.log('Время обновилось:', newTime.toLocaleTimeString('ru-RU'))
+      })
+
+      onMounted(() => {
+        timerId = setInterval(() => {
+          now.value = new Date()
+        }, 1000)
+      })
+
+      onUnmounted(() => {
+        clearInterval(timerId)
+      })
+
+      return { time, greeting }
+    },
+    template: `
+      <div>
+        <h2>Задание 7. Watch и жизненный цикл</h2>
+        <p>{{ greeting }}!</p>
+        <p>Текущее время: <b>{{ time }}</b></p>
+        <p><small>Сообщения об обновлении времени выводятся в консоль (F12).</small></p>
+      </div>
+    `
+  })
+
   createApp({
     setup() {
       const currentTab = ref(0)
-      const tabs = [Task1, Task2, Task3, Task4, Task5, Task6]
+      const tabs = [Task1, Task2, Task3, Task4, Task5, Task6, Task7]
       return { currentTab, tabs }
     }
   }).mount('#app')
