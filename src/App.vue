@@ -2,11 +2,13 @@
 import { ref, computed, watch } from 'vue'
 import TodoList from './components/TodoList.vue'
 import AddTodoModal from './components/AddTodoModal.vue'
+import SearchBar from './components/SearchBar.vue'
 import { loadTasks, saveTasks } from './storage.js'
 
 const tasks = ref(loadTasks())
 const isModalOpen = ref(false)
 const editingTask = ref(null)
+const search = ref('')
 
 const today = new Date().toLocaleDateString('ru-RU', {
 	weekday: 'long',
@@ -14,8 +16,16 @@ const today = new Date().toLocaleDateString('ru-RU', {
 	month: 'long'
 })
 
-// done tasks go to the bottom
-const sortedTasks = computed(() => [...tasks.value].sort((a, b) => a.done - b.done))
+// search filter, done tasks go to the bottom
+const visibleTasks = computed(() => {
+	const query = search.value.trim().toLowerCase()
+	return tasks.value
+		.filter(t => t.title.toLowerCase().includes(query))
+		.sort((a, b) => a.done - b.done)
+})
+
+// for screen readers
+const searchMessage = computed(() => search.value ? `Найдено задач: ${visibleTasks.value.length}` : '')
 
 const doneCount = computed(() => tasks.value.filter(t => t.done).length)
 
@@ -61,6 +71,7 @@ function deleteTask(id) {
 
 		<main class="page__main">
 			<div class="controls">
+				<SearchBar v-model="search" />
 				<button type="button" class="btn btn--primary btn--block-mobile" @click="openModal()">
 					<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
 						<path d="M12 5v14M5 12h14" />
@@ -75,13 +86,16 @@ function deleteTask(id) {
 					<span v-if="tasks.length" class="tasks-section__count">Выполнено: {{ doneCount }} из {{ tasks.length }}</span>
 				</div>
 				<TodoList
-					:tasks="sortedTasks"
+					:tasks="visibleTasks"
+					:searching="tasks.length > 0"
 					@toggle="toggleTask"
 					@edit="openModal"
 					@delete="deleteTask"
 				/>
 			</section>
 		</main>
+
+		<div class="visually-hidden" aria-live="polite">{{ searchMessage }}</div>
 
 		<AddTodoModal
 			:open="isModalOpen"
