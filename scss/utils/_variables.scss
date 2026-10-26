@@ -1,0 +1,28 @@
+// Design tokens (Fluent-like)
+
+// Typography
+$font-text: 'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Roboto, 'Noto Sans', sans-serif;
+$font-display: 'Segoe UI Variable Display', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Roboto, 'Noto Sans', sans-serif;
+
+// Radii
+$radius-sm: 4px;
+$radius-md: 6px;
+$radius-lg: 8px;
+
+// Spacing
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+
+// Motion (Fluent easing)
+$ease-decelerate: cubic-bezier(0.1, 0.9, 0.2, 1);
+$duration-fast: 0.1s;
+$duration-base: 0.2s;
+
+// Breakpoints
+$bp-sm: 36rem;
+
+// Z-index
+$z-index-modal: 1000;

@@ -1,0 +1,53 @@
+@use '../utils' as *;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.25rem;
+  padding: 0.3125rem 1rem;
+  border: 1px solid transparent;
+  border-radius: $radius-sm;
+  font-weight: 600;
+  line-height: 1.25rem;
+  white-space: nowrap;
+  @include transition(background-color border-color, $duration-fast);
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  &--primary {
+    background-color: var(--accent-bg);
+    color: var(--on-accent);
+
+    &:hover {
+      background-color: var(--accent-bg-hover);
+    }
+
+    &:active {
+      background-color: var(--accent-bg-pressed);
+    }
+  }
+
+  &--secondary {
+    background-color: var(--surface);
+    border-color: var(--border-strong);
+    color: var(--text);
+
+    &:hover {
+      background-color: var(--surface-hover);
+    }
+
+    &:active {
+      background-color: var(--surface-pressed);
+    }
+  }
+
+  @include below($bp-sm) {
+    &--block-mobile {
+      flex: 1 1 100%;
+    }
+  }
+}

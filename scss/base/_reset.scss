@@ -1,0 +1,65 @@
+@use '../utils' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--bg);
+  background-image:
+    radial-gradient(60rem 26rem at 100% -8%, var(--bg-glow), transparent 70%),
+    radial-gradient(48rem 22rem at -8% 0%, var(--bg-glow-alt), transparent 70%);
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: $font-text;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @include transition(background-color color, 0.25s);
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+svg {
+  flex: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

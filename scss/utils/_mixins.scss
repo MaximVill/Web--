@@ -1,0 +1,40 @@
+@use 'sass:list';
+@use 'variables' as *;
+
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// $props may be space- or comma-separated; output is always a valid comma list
+@mixin transition($props: all, $duration: $duration-base, $easing: ease) {
+  transition-property: list.join($props, (), comma);
+  transition-duration: $duration;
+  transition-timing-function: $easing;
+}
+
+// Keyboard focus: transparent outline stays visible in Windows high-contrast mode
+@mixin focus-ring {
+  outline: 2px solid transparent;
+  box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--focus);
+}
+
+@mixin below($bp) {
+  @media (max-width: #{$bp - 0.0625rem}) {
+    @content;
+  }
+}

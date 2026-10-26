@@ -1,0 +1,38 @@
+@use '../utils' as *;
+
+.theme-toggle {
+  @include flex-center;
+  flex: none;
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 1px solid transparent;
+  border-radius: $radius-sm;
+  color: var(--text);
+  @include transition(background-color border-color, $duration-fast);
+
+  &:hover {
+    background-color: var(--surface);
+    border-color: var(--border-strong);
+  }
+
+  &:active {
+    background-color: var(--surface-pressed);
+  }
+
+  &:focus-visible {
+    @include focus-ring;
+  }
+
+  // Moon in light theme (switch to dark), sun in dark theme
+  &__icon--sun {
+    display: none;
+  }
+
+  [data-theme='dark'] &__icon--sun {
+    display: block;
+  }
+
+  [data-theme='dark'] &__icon--moon {
+    display: none;
+  }
+}
