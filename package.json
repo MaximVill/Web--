@@ -1,23 +1,24 @@
 {
-	"name": "todo-list-lab4",
+	"name": "todo-list-vue",
 	"version": "1.0.0",
-	"description": "To-Do List Application - Lab 4",
-	"main": "index.js",
+	"description": "To-Do List on Vue 3 and Vite - Lab 6",
+	"private": true,
+	"type": "module",
 	"scripts": {
-		"sass:dev": "sass --watch scss/main.scss:dist/css/main.css",
-		"build": "sass --no-source-map --style=compressed scss/main.scss:dist/css/main.css"
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview"
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/MaximVill/Web--.git"
 	},
-	"keywords": [],
-	"type": "commonjs",
-	"bugs": {
-		"url": "https://github.com/MaximVill/Web--/issues"
+	"dependencies": {
+		"vue": "^3.5.44"
 	},
-	"homepage": "https://github.com/MaximVill/Web--#readme",
 	"devDependencies": {
-		"sass": "^1.105.1"
+		"@vitejs/plugin-vue": "^5.2.4",
+		"sass": "^1.106.1",
+		"vite": "^6.4.5"
 	}
 }
