@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, nextTick } from 'vue'
 import TodoList from './components/TodoList.vue'
 import AddTodoModal from './components/AddTodoModal.vue'
 import SearchBar from './components/SearchBar.vue'
@@ -10,6 +10,7 @@ const tasks = ref(loadTasks())
 const isModalOpen = ref(false)
 const editingTask = ref(null)
 const search = ref('')
+const addButton = ref(null)
 // initial theme is set in index.html before first paint
 const theme = ref(document.documentElement.getAttribute('data-theme') || 'light')
 
@@ -71,8 +72,17 @@ function toggleTask(id) {
 	if (task) task.done = !task.done
 }
 
-function deleteTask(id) {
+async function deleteTask(id) {
 	tasks.value = tasks.value.filter(t => t.id !== id)
+
+	// move focus to the first task or to the add button
+	await nextTick()
+	const firstCheckbox = document.querySelector('.task-item__checkbox')
+	if (firstCheckbox) {
+		firstCheckbox.focus()
+	} else {
+		addButton.value.focus()
+	}
 }
 </script>
 
@@ -89,7 +99,7 @@ function deleteTask(id) {
 		<main class="page__main">
 			<div class="controls">
 				<SearchBar v-model="search" />
-				<button type="button" class="btn btn--primary btn--block-mobile" @click="openModal()">
+				<button ref="addButton" type="button" class="btn btn--primary btn--block-mobile" @click="openModal()">
 					<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
 						<path d="M12 5v14M5 12h14" />
 					</svg>
