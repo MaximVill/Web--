@@ -3,12 +3,15 @@ import { ref, computed, watch } from 'vue'
 import TodoList from './components/TodoList.vue'
 import AddTodoModal from './components/AddTodoModal.vue'
 import SearchBar from './components/SearchBar.vue'
+import ThemeToggle from './components/ThemeToggle.vue'
 import { loadTasks, saveTasks } from './storage.js'
 
 const tasks = ref(loadTasks())
 const isModalOpen = ref(false)
 const editingTask = ref(null)
 const search = ref('')
+// initial theme is set in index.html before first paint
+const theme = ref(document.documentElement.getAttribute('data-theme') || 'light')
 
 const today = new Date().toLocaleDateString('ru-RU', {
 	weekday: 'long',
@@ -30,6 +33,19 @@ const searchMessage = computed(() => search.value ? `Найдено задач: 
 const doneCount = computed(() => tasks.value.filter(t => t.done).length)
 
 watch(tasks, (value) => saveTasks(value), { deep: true })
+
+watch(theme, (value) => {
+	document.documentElement.setAttribute('data-theme', value)
+	try {
+		localStorage.setItem('theme', value)
+	} catch (e) {
+		console.error('Error saving theme:', e)
+	}
+})
+
+function toggleTheme() {
+	theme.value = theme.value === 'dark' ? 'light' : 'dark'
+}
 
 function openModal(task = null) {
 	editingTask.value = task
@@ -67,6 +83,7 @@ function deleteTask(id) {
 				<h1 class="page__title">Мои задачи</h1>
 				<p class="page__subtitle">{{ today }}</p>
 			</div>
+			<ThemeToggle :is-dark="theme === 'dark'" @toggle="toggleTheme" />
 		</header>
 
 		<main class="page__main">
