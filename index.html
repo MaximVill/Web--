@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Контекст — Интерактивные мемы</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Minimal Top Navigation -->
+  <header class="top-nav">
+    <a href="#" class="brand-title" onclick="window.switchView('game'); return false;">Контекст</a>
+    <span id="round-counter" class="round-counter">1 / 18</span>
+    <button id="burger-btn" class="burger-btn" type="button" aria-label="Меню">
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+      <span class="burger-line"></span>
+    </button>
+  </header>
+
+  <!-- Drawer Menu Backdrop & Sidebar -->
+  <div id="drawer-backdrop" class="drawer-backdrop"></div>
+  <aside id="drawer" class="drawer">
+    <div class="drawer-header">
+      <span class="drawer-title">Меню</span>
+      <button id="drawer-close" class="drawer-close" type="button" aria-label="Закрыть">&times;</button>
+    </div>
+    <ul class="drawer-nav-list">
+      <li>
+        <button class="drawer-nav-link active" data-view="game" type="button">Игра</button>
+      </li>
+      <li>
+        <button id="nav-my-memes" class="drawer-nav-link" type="button">Мои мемы</button>
+      </li>
+      <li>
+        <button class="drawer-nav-link" data-view="editor" type="button">Редактор мемов</button>
+      </li>
+      <li>
+        <button class="drawer-nav-link" data-view="gallery" type="button">Галерея</button>
+      </li>
+    </ul>
+    <div class="drawer-footer">
+      <button id="sound-toggle-btn" class="btn-minimal-outline" style="width: 100%;" type="button">
+        Звук: вкл
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="main-wrapper">
+
+    <!-- VIEW 1: GAME (TEXT ON BLACK OR FULLSCREEN MEME OR SUMMARY) -->
+    <section id="view-game" class="app-view game-view active">
+      
+      <!-- SCREEN 1: ONLY PROMPT TEXT ON BLACK -->
+      <div id="prompt-screen" class="prompt-screen">
+        <div class="prompt-sentence">
+          <span id="prompt-before">Загрузка...</span>
+          <input type="text" id="game-word-input" class="inline-word-input" autocomplete="off" spellcheck="false" autofocus>
+          <span id="prompt-after"></span>
+        </div>
+
+        <div class="game-controls">
+          <button id="submit-btn" class="btn-minimal" type="button">Показать</button>
+        </div>
+      </div>
+
+      <!-- SCREEN 2: FULLSCREEN MEME (PROMPT TEXT IS HIDDEN) -->
+      <div id="reveal-screen" class="reveal-screen">
+        <div class="meme-meta-bar">
+          <span id="meme-name-tag" class="meme-name-tag"></span>
+        </div>
+
+        <div class="fullscreen-meme-wrapper">
+          <div id="revealed-top-text" class="meme-text-overlay meme-text-top"></div>
+          <img id="revealed-img" src="" alt="Мем">
+          <div id="revealed-bottom-text" class="meme-text-overlay meme-text-bottom"></div>
+        </div>
+
+        <div class="reveal-actions">
+          <button id="next-btn" class="btn-minimal" type="button">Следующая фраза</button>
+          <button id="back-btn" class="btn-minimal-outline" type="button">Изменить слово</button>
+          <button id="edit-revealed-btn" class="btn-minimal-outline" type="button">В редактор</button>
+        </div>
+      </div>
+
+      <!-- SCREEN 3: SUMMARY OF ALL USER CREATED MEMES -->
+      <div id="summary-screen" class="summary-screen">
+        <div class="summary-header">
+          <h2 class="summary-title">Созданные мемы</h2>
+          <p id="summary-count" class="summary-subtitle">Все мемы, которые вы создали за эту игру</p>
+        </div>
+
+        <div id="created-memes-grid" class="created-memes-grid"></div>
+
+        <div class="summary-actions">
+          <button id="restart-game-btn" class="btn-minimal" type="button">Начать заново</button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- VIEW 2: CANVAS MEME EDITOR -->
+    <section id="view-editor" class="app-view">
+      <div class="editor-container">
+        <h2 class="editor-title">Редактор мема</h2>
+
+        <div class="editor-grid">
+          <div class="canvas-box">
+            <canvas id="meme-canvas" width="600" height="500"></canvas>
+            <p class="editor-hint">Перетаскивайте текст прямо по картинке</p>
+          </div>
+
+          <div class="editor-form">
+            <div class="form-group">
+              <label for="template-select">Шаблон</label>
+              <select id="template-select" class="select-input"></select>
+            </div>
+
+            <div class="form-group">
+              <label for="editor-top-text">Верхний текст</label>
+              <input type="text" id="editor-top-text" class="text-input" placeholder="Верхний текст">
+            </div>
+
+            <div class="form-group">
+              <label for="editor-bottom-text">Нижний текст</label>
+              <input type="text" id="editor-bottom-text" class="text-input" placeholder="Нижний текст">
+            </div>
+
+            <div class="form-group">
+              <label>Размер шрифта: <span id="font-size-val">36px</span></label>
+              <input type="range" id="editor-font-size" min="20" max="64" value="36">
+            </div>
+
+            <div class="form-group">
+              <input type="file" id="editor-upload" accept="image/*" style="display: none;">
+              <button id="editor-upload-btn" class="btn-minimal-outline" type="button">
+                Загрузить свою фотографию
+              </button>
+            </div>
+
+            <div class="form-group">
+              <button id="editor-download-btn" class="btn-minimal" type="button">
+                Скачать изображение (PNG)
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW 3: MEME GALLERY -->
+    <section id="view-gallery" class="app-view">
+      <div class="gallery-container">
+        <h2 class="editor-title">Галерея</h2>
+        <div id="gallery-grid" class="gallery-grid"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Scripts -->
+  <script src="js/memes-data.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/canvas-editor.js"></script>
+  <script src="js/game.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
