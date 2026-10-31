@@ -6,7 +6,7 @@
 
 Vue 3 + Vite. Вся графика — SVG, звук — Web Audio API, внешних ресурсов нет.
 
-## Запуск
+## Локальный запуск
 
 ```bash
 npm install
@@ -14,6 +14,8 @@ npm run dev
 npm run build
 ```
 
-## GitHub Pages
+## Vercel
+
+https://web-nrszuuhem-maximvills-projects.vercel.app/
 
 Вилл Максим, ФИТ-241
