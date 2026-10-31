@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" width="100%" height="100%">
+  <!-- Split into 2 frames: looking forward, then looking away -->
+  <line x1="300" y1="0" x2="300" y2="500" stroke="#1a202c" stroke-width="6"/>
+
+  <!-- LEFT FRAME: Looking Forward -->
+  <rect x="0" y="0" width="300" height="500" fill="#805ad5"/>
+  <g transform="translate(30, 100)">
+    <!-- Torso -->
+    <path d="M30,350 Q120,230 210,350 Z" fill="#d69e2e"/>
+    <!-- Head -->
+    <circle cx="120" cy="180" r="95" fill="#d69e2e"/>
+    <!-- Muzzle / Face -->
+    <ellipse cx="120" cy="195" rx="70" ry="60" fill="#fbd38d"/>
+    <!-- Big wide eyes looking straight -->
+    <ellipse cx="90" cy="170" rx="22" ry="26" fill="#ffffff" stroke="#1a202c" stroke-width="3"/>
+    <circle cx="90" cy="170" r="10" fill="#1a202c"/>
+
+    <ellipse cx="150" cy="170" rx="22" ry="26" fill="#ffffff" stroke="#1a202c" stroke-width="3"/>
+    <circle cx="150" cy="170" r="10" fill="#1a202c"/>
+
+    <!-- Small nose & neutral straight mouth -->
+    <circle cx="115" cy="205" r="3" fill="#1a202c"/>
+    <circle cx="125" cy="205" r="3" fill="#1a202c"/>
+    <line x1="105" y1="225" x2="135" y2="225" stroke="#1a202c" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- RIGHT FRAME: Awkward Side Glance -->
+  <rect x="300" y="0" width="300" height="500" fill="#805ad5"/>
+  <g transform="translate(330, 100)">
+    <!-- Torso -->
+    <path d="M30,350 Q120,230 210,350 Z" fill="#d69e2e"/>
+    <!-- Head -->
+    <circle cx="120" cy="180" r="95" fill="#d69e2e"/>
+    <!-- Muzzle / Face -->
+    <ellipse cx="120" cy="195" rx="70" ry="60" fill="#fbd38d"/>
+    <!-- Eyes looking way off to the side (awkward avoidance) -->
+    <ellipse cx="90" cy="170" rx="22" ry="26" fill="#ffffff" stroke="#1a202c" stroke-width="3"/>
+    <circle cx="106" cy="170" r="10" fill="#1a202c"/>
+
+    <ellipse cx="150" cy="170" rx="22" ry="26" fill="#ffffff" stroke="#1a202c" stroke-width="3"/>
+    <circle cx="166" cy="170" r="10" fill="#1a202c"/>
+
+    <!-- Small tense mouth -->
+    <circle cx="115" cy="205" r="3" fill="#1a202c"/>
+    <circle cx="125" cy="205" r="3" fill="#1a202c"/>
+    <line x1="108" y1="225" x2="132" y2="225" stroke="#1a202c" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <rect x="0" y="440" width="600" height="60" fill="#1a202c" opacity="0.9"/>
+  <text x="300" y="480" font-family="'Impact', 'Arial Black', sans-serif" font-size="24" fill="#ffffff" text-anchor="middle">ДЕЛАЕМ ВИД, ЧТО НАС ЗДЕСЬ НЕТ</text>
+</svg>

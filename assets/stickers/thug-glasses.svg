@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
+  <path d="M10,15 H90 V45 H70 V35 H30 V45 H10 Z M110,15 H190 V45 H170 V35 H130 V45 H110 Z M90,20 H110 V28 H90 Z" fill="#000000"/>
+  <rect x="20" y="20" width="10" height="6" fill="#ffffff"/>
+  <rect x="30" y="26" width="10" height="6" fill="#ffffff"/>
+  <rect x="120" y="20" width="10" height="6" fill="#ffffff"/>
+  <rect x="130" y="26" width="10" height="6" fill="#ffffff"/>
+</svg>

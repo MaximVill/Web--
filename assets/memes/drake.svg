@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="100%" height="100%">
+  <!-- Two Panel Split -->
+  <line x1="0" y1="300" x2="600" y2="300" stroke="#1a202c" stroke-width="6"/>
+  <line x1="300" y1="0" x2="300" y2="600" stroke="#1a202c" stroke-width="6"/>
+
+  <!-- TOP LEFT: Drake Disapproves -->
+  <rect x="0" y="0" width="300" height="300" fill="#f6ad55"/>
+  <g transform="translate(20, 20)">
+    <!-- Orange Jacket body turned away -->
+    <path d="M30,280 Q70,140 210,160 L230,280 Z" fill="#dd6b20"/>
+    <!-- Hand pushing away -->
+    <path d="M170,130 Q220,110 240,150 Q230,190 190,180" fill="#8c532b"/>
+    <!-- Hand palm turned to viewer -->
+    <circle cx="235" cy="135" r="22" fill="#8c532b"/>
+    <rect x="225" y="105" width="8" height="25" rx="4" fill="#8c532b"/>
+    <rect x="236" y="102" width="8" height="28" rx="4" fill="#8c532b"/>
+    <rect x="247" y="107" width="8" height="25" rx="4" fill="#8c532b"/>
+    <!-- Head looking away/down in disgust -->
+    <ellipse cx="110" cy="95" rx="48" ry="55" fill="#8c532b"/>
+    <!-- Hair & Beard -->
+    <path d="M70,85 C65,45 155,45 155,85" stroke="#1a202c" stroke-width="12" fill="none"/>
+    <path d="M75,100 Q110,165 145,100" stroke="#1a202c" stroke-width="10" fill="none"/>
+    <!-- Closed displeased eyes & grimace -->
+    <path d="M85,90 Q95,98 105,92" stroke="#1a202c" stroke-width="3" fill="none"/>
+    <path d="M120,90 Q130,98 140,92" stroke="#1a202c" stroke-width="3" fill="none"/>
+    <path d="M98,125 Q115,115 130,122" stroke="#2d3748" stroke-width="4" fill="none"/>
+  </g>
+
+  <!-- TOP RIGHT: Blank / Placeholder area for text -->
+  <rect x="300" y="0" width="300" height="300" fill="#edf2f7"/>
+  <text x="450" y="140" font-family="'Impact', sans-serif" font-size="28" fill="#a0aec0" text-anchor="middle">❌ НЕТ</text>
+
+  <!-- BOTTOM LEFT: Drake Approves -->
+  <rect x="0" y="300" width="300" height="300" fill="#f6ad55"/>
+  <g transform="translate(20, 320)">
+    <!-- Orange Jacket body pointing -->
+    <path d="M30,280 Q90,130 220,150 L230,280 Z" fill="#dd6b20"/>
+    <!-- Head smiling toward viewer -->
+    <ellipse cx="120" cy="85" rx="48" ry="55" fill="#8c532b"/>
+    <!-- Hair & Beard -->
+    <path d="M80,75 C75,35 165,35 165,75" stroke="#1a202c" stroke-width="12" fill="none"/>
+    <path d="M85,90 Q120,155 155,90" stroke="#1a202c" stroke-width="10" fill="none"/>
+    <!-- Happy Eyes -->
+    <circle cx="105" cy="80" r="4" fill="#1a202c"/>
+    <circle cx="138" cy="80" r="4" fill="#1a202c"/>
+    <path d="M98,72 Q106,68 114,72" stroke="#1a202c" stroke-width="2.5" fill="none"/>
+    <path d="M130,72 Q138,68 146,72" stroke="#1a202c" stroke-width="2.5" fill="none"/>
+    <!-- Big satisfied smile with teeth -->
+    <path d="M105,108 Q122,126 142,108 Z" fill="#ffffff" stroke="#1a202c" stroke-width="2"/>
+    <!-- Pointing finger hand -->
+    <g transform="translate(185, 120)">
+      <circle cx="15" cy="20" r="18" fill="#8c532b"/>
+      <!-- Pointing index finger -->
+      <rect x="20" y="12" width="35" height="12" rx="6" fill="#8c532b"/>
+    </g>
+  </g>
+
+  <!-- BOTTOM RIGHT: Blank / Placeholder area for text -->
+  <rect x="300" y="300" width="300" height="300" fill="#ffffff"/>
+  <text x="450" y="460" font-family="'Impact', sans-serif" font-size="28" fill="#38a169" text-anchor="middle">👉 ВОТ ЭТО ДА!</text>
+</svg>

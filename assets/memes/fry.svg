@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" width="100%" height="100%">
+  <!-- Background -->
+  <rect width="600" height="500" fill="#2b6cb0"/>
+  <circle cx="300" cy="250" r="220" fill="#3182ce" opacity="0.4"/>
+
+  <!-- Philip J. Fry -->
+  <g transform="translate(150, 70)">
+    <!-- Red Jacket -->
+    <path d="M-30,410 Q150,230 330,410 Z" fill="#e53e3e"/>
+    <!-- White T-shirt collar -->
+    <ellipse cx="150" cy="255" rx="35" ry="15" fill="#ffffff"/>
+
+    <!-- Neck -->
+    <rect x="125" y="195" width="50" height="55" fill="#fbd38d"/>
+
+    <!-- Head -->
+    <ellipse cx="150" cy="130" rx="70" ry="80" fill="#fbd38d"/>
+
+    <!-- Iconic messy Orange Hair -->
+    <path d="M80,120 C70,30 140,10 180,30 C220,10 240,60 220,120 C240,80 230,40 190,40 C140,25 90,60 80,120 Z" fill="#dd6b20"/>
+    <path d="M170,30 Q200,-10 215,20 Z" fill="#dd6b20"/>
+
+    <!-- Squinting suspicious eyes (Not sure if...) -->
+    <!-- Left eye slit -->
+    <path d="M100,125 Q120,115 135,123 Q120,130 100,125 Z" fill="#ffffff" stroke="#1a202c" stroke-width="2"/>
+    <circle cx="120" cy="123" r="3" fill="#1a202c"/>
+
+    <!-- Right eye slit -->
+    <path d="M165,123 Q180,115 200,125 Q180,130 165,123 Z" fill="#ffffff" stroke="#1a202c" stroke-width="2"/>
+    <circle cx="180" cy="123" r="3" fill="#1a202c"/>
+
+    <!-- Eyebrows lowered in doubt -->
+    <path d="M98,112 L136,118" stroke="#c05621" stroke-width="4" stroke-linecap="round"/>
+    <path d="M164,118 L202,112" stroke="#c05621" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- Nose -->
+    <path d="M148,125 L142,148 L154,148" stroke="#c05621" stroke-width="3" fill="none" stroke-linejoin="round"/>
+
+    <!-- Skeptical mouth -->
+    <line x1="125" y1="175" x2="175" y2="175" stroke="#742a2a" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <text x="300" y="475" font-family="'Impact', 'Arial Black', sans-serif" font-size="28" fill="#ffffff" stroke="#000000" stroke-width="2" text-anchor="middle">ТО ЛИ ПРАВДА, ТО ЛИ ПОДВОХ...</text>
+</svg>

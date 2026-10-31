@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 500" width="100%" height="100%">
+  <!-- Split screen: Left screaming woman, Right cat at table -->
+  <line x1="300" y1="0" x2="300" y2="500" stroke="#1a202c" stroke-width="6"/>
+
+  <!-- LEFT: Woman yelling and pointing -->
+  <rect x="0" y="0" width="300" height="500" fill="#cbd5e0"/>
+  <g transform="translate(10, 60)">
+    <!-- Blonde hair -->
+    <path d="M20,130 C10,30 180,20 180,130 Q200,280 160,330 L50,330 Q0,260 20,130 Z" fill="#ecc94b"/>
+    <!-- Head -->
+    <ellipse cx="100" cy="140" rx="50" ry="60" fill="#fbd38d"/>
+    <!-- Crying / angry eyes -->
+    <path d="M75,125 Q90,118 100,128" stroke="#742a2a" stroke-width="3" fill="none"/>
+    <path d="M78,132 L68,155" stroke="#3182ce" stroke-width="3"/> <!-- tear -->
+    <path d="M110,128 Q120,118 135,125" stroke="#742a2a" stroke-width="3" fill="none"/>
+    <path d="M128,132 L138,155" stroke="#3182ce" stroke-width="3"/> <!-- tear -->
+    <!-- Screaming mouth -->
+    <ellipse cx="105" cy="170" rx="22" ry="18" fill="#742a2a"/>
+    <path d="M90,165 Q105,172 120,165" stroke="#ffffff" stroke-width="4"/>
+
+    <!-- Pointing Finger hand -->
+    <g transform="translate(150, 180)">
+      <path d="M0,80 Q50,40 100,20" stroke="#fbd38d" stroke-width="20" stroke-linecap="round" fill="none"/>
+      <line x1="90" y1="20" x2="135" y2="15" stroke="#fbd38d" stroke-width="12" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <!-- RIGHT: Confused white cat (Smudge) sitting behind salad plate -->
+  <rect x="300" y="0" width="300" height="500" fill="#2d3748"/>
+  <!-- Restaurant table -->
+  <rect x="300" y="320" width="300" height="180" fill="#4a5568"/>
+  <!-- Salad plate -->
+  <ellipse cx="450" cy="350" rx="70" ry="22" fill="#ffffff" stroke="#cbd5e0" stroke-width="2"/>
+  <!-- Green salad leaves -->
+  <circle cx="430" cy="346" r="14" fill="#38a169"/>
+  <circle cx="460" cy="344" r="16" fill="#48bb78"/>
+  <circle cx="445" cy="348" r="10" fill="#68d391"/>
+
+  <!-- Smudge the Cat -->
+  <g transform="translate(370, 140)">
+    <!-- Cat Ears -->
+    <polygon points="50,70 20,10 75,50" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+    <polygon points="40,60 26,22 65,48" fill="#fed7d7"/>
+
+    <polygon points="110,50 165,10 135,70" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+    <polygon points="120,48 159,22 145,60" fill="#fed7d7"/>
+
+    <!-- Cat Head -->
+    <ellipse cx="90" cy="100" rx="60" ry="50" fill="#ffffff"/>
+
+    <!-- Confused / Squinting Eyes -->
+    <ellipse cx="65" cy="95" rx="12" ry="7" fill="#ecc94b" stroke="#2d3748" stroke-width="2"/>
+    <line x1="65" y1="88" x2="65" y2="102" stroke="#1a202c" stroke-width="3"/>
+
+    <ellipse cx="115" cy="95" rx="12" ry="7" fill="#ecc94b" stroke="#2d3748" stroke-width="2"/>
+    <line x1="115" y1="88" x2="115" y2="102" stroke="#1a202c" stroke-width="3"/>
+
+    <!-- Pink nose & confused flat mouth -->
+    <polygon points="86,112 94,112 90,118" fill="#f687b3"/>
+    <line x1="82" y1="124" x2="98" y2="124" stroke="#4a5568" stroke-width="2"/>
+
+    <!-- Whiskers -->
+    <line x1="50" y1="110" x2="15" y2="105" stroke="#cbd5e0" stroke-width="2"/>
+    <line x1="50" y1="118" x2="15" y2="125" stroke="#cbd5e0" stroke-width="2"/>
+    <line x1="130" y1="110" x2="165" y2="105" stroke="#cbd5e0" stroke-width="2"/>
+    <line x1="130" y1="118" x2="165" y2="125" stroke="#cbd5e0" stroke-width="2"/>
+  </g>
+
+  <rect x="0" y="440" width="600" height="60" fill="#1a202c" opacity="0.85"/>
+  <text x="300" y="480" font-family="'Impact', 'Arial Black', sans-serif" font-size="24" fill="#ffffff" text-anchor="middle">НЕПОНИМАНИЕ ДОСТИГЛО ПИКА</text>
+</svg>
