@@ -1,0 +1,64 @@
+@use '../utils' as *;
+
+.auth-card {
+  width: min(26rem, 100%);
+  margin: 1rem auto 0;
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: $radius-lg;
+  background-color: var(--surface);
+  box-shadow: var(--shadow-card);
+
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+}
+
+.auth-card__title {
+  margin-bottom: 0.25rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.auth-card__note {
+  margin-bottom: 1.25rem;
+  color: var(--text-muted);
+  font-size: 0.8125rem;
+}
+
+.auth-card__submit {
+  width: 100%;
+}
+
+.auth-card__footer {
+  margin-top: 1.25rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.form-hint,
+.form-error {
+  font-size: 0.8125rem;
+}
+
+.form-hint {
+  color: var(--text-muted);
+}
+
+.form-error {
+  color: var(--danger);
+  font-weight: 600;
+
+  &--box {
+    margin-bottom: 1.25rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--danger);
+    border-radius: $radius-sm;
+    background-color: var(--danger-subtle);
+  }
+}
+
+.form-group__input[aria-invalid='true'] {
+  border-color: var(--danger);
+  border-bottom-color: var(--danger);
+}

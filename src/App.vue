@@ -1,39 +1,14 @@
 <script setup>
-import { ref, computed, watch, nextTick } from 'vue'
-import TodoList from './components/TodoList.vue'
-import AddTodoModal from './components/AddTodoModal.vue'
-import SearchBar from './components/SearchBar.vue'
+import { ref, watch } from 'vue'
+import { useRouter } from 'vue-router'
 import ThemeToggle from './components/ThemeToggle.vue'
-import { loadTasks, saveTasks } from './storage.js'
+import { useUserStore } from './stores/user.js'
 
-const tasks = ref(loadTasks())
-const isModalOpen = ref(false)
-const editingTask = ref(null)
-const search = ref('')
-const addButton = ref(null)
+const userStore = useUserStore()
+const router = useRouter()
+
 // initial theme is set in index.html before first paint
 const theme = ref(document.documentElement.getAttribute('data-theme') || 'light')
-
-const today = new Date().toLocaleDateString('ru-RU', {
-	weekday: 'long',
-	day: 'numeric',
-	month: 'long'
-})
-
-// search filter, done tasks go to the bottom
-const visibleTasks = computed(() => {
-	const query = search.value.trim().toLowerCase()
-	return tasks.value
-		.filter(t => t.title.toLowerCase().includes(query))
-		.sort((a, b) => a.done - b.done)
-})
-
-// for screen readers
-const searchMessage = computed(() => search.value ? `Найдено задач: ${visibleTasks.value.length}` : '')
-
-const doneCount = computed(() => tasks.value.filter(t => t.done).length)
-
-watch(tasks, (value) => saveTasks(value), { deep: true })
 
 watch(theme, (value) => {
 	document.documentElement.setAttribute('data-theme', value)
@@ -48,87 +23,41 @@ function toggleTheme() {
 	theme.value = theme.value === 'dark' ? 'light' : 'dark'
 }
 
-function openModal(task = null) {
-	editingTask.value = task
-	isModalOpen.value = true
-}
-
-function closeModal() {
-	isModalOpen.value = false
-	editingTask.value = null
-}
-
-function saveTask(title) {
-	if (editingTask.value) {
-		editingTask.value.title = title
-	} else {
-		tasks.value.push({ id: Date.now().toString(), title, done: false })
-	}
-	closeModal()
-}
-
-function toggleTask(id) {
-	const task = tasks.value.find(t => t.id === id)
-	if (task) task.done = !task.done
-}
-
-async function deleteTask(id) {
-	tasks.value = tasks.value.filter(t => t.id !== id)
-
-	// move focus to the first task or to the add button
-	await nextTick()
-	const firstCheckbox = document.querySelector('.task-item__checkbox')
-	if (firstCheckbox) {
-		firstCheckbox.focus()
-	} else {
-		addButton.value.focus()
-	}
+function logout() {
+	userStore.logout()
+	router.push({ name: 'login' })
 }
 </script>
 
 <template>
 	<div class="page">
-		<header class="page__header">
-			<div class="page__heading">
-				<h1 class="page__title">Мои задачи</h1>
-				<p class="page__subtitle">{{ today }}</p>
+		<a href="#main" class="skip-link" @click.prevent="$refs.main.focus()">Перейти к содержимому</a>
+
+		<header class="site-header">
+			<nav class="site-nav" aria-label="Основная навигация">
+				<ul class="site-nav__list">
+					<template v-if="userStore.isAuthenticated">
+						<li><RouterLink :to="{ name: 'todo' }" class="site-nav__link">Задачи</RouterLink></li>
+					</template>
+					<template v-else>
+						<li><RouterLink :to="{ name: 'login' }" class="site-nav__link">Вход</RouterLink></li>
+						<li><RouterLink :to="{ name: 'register' }" class="site-nav__link">Регистрация</RouterLink></li>
+					</template>
+					<li><RouterLink :to="{ name: 'about' }" class="site-nav__link">О приложении</RouterLink></li>
+				</ul>
+			</nav>
+
+			<div class="site-header__actions">
+				<template v-if="userStore.isAuthenticated">
+					<span class="site-header__user">{{ userStore.currentUser.email }}</span>
+					<button type="button" class="btn btn--secondary" @click="logout">Выйти</button>
+				</template>
+				<ThemeToggle :is-dark="theme === 'dark'" @toggle="toggleTheme" />
 			</div>
-			<ThemeToggle :is-dark="theme === 'dark'" @toggle="toggleTheme" />
 		</header>
 
-		<main class="page__main">
-			<div class="controls">
-				<SearchBar v-model="search" />
-				<button ref="addButton" type="button" class="btn btn--primary btn--block-mobile" @click="openModal()">
-					<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-						<path d="M12 5v14M5 12h14" />
-					</svg>
-					Добавить задачу
-				</button>
-			</div>
-
-			<section class="tasks-section">
-				<div class="tasks-section__head">
-					<h2 id="list-heading">Список задач</h2>
-					<span v-if="tasks.length" class="tasks-section__count">Выполнено: {{ doneCount }} из {{ tasks.length }}</span>
-				</div>
-				<TodoList
-					:tasks="visibleTasks"
-					:searching="tasks.length > 0"
-					@toggle="toggleTask"
-					@edit="openModal"
-					@delete="deleteTask"
-				/>
-			</section>
+		<main id="main" ref="main" class="page__main" tabindex="-1">
+			<RouterView />
 		</main>
-
-		<div class="visually-hidden" aria-live="polite">{{ searchMessage }}</div>
-
-		<AddTodoModal
-			:open="isModalOpen"
-			:task="editingTask"
-			@save="saveTask"
-			@close="closeModal"
-		/>
 	</div>
 </template>
