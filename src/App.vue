@@ -2,7 +2,7 @@
 import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import ThemeToggle from './components/ThemeToggle.vue'
-import { useUserStore } from './stores/user.js'
+import { useUserStore } from './stores/user'
 
 const userStore = useUserStore()
 const router = useRouter()

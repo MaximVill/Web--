@@ -1,9 +1,18 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import { useUserStore } from '../stores/user.js'
+import { useUserStore } from '../stores/user'
 import TodoPage from '../pages/TodoPage.vue'
 import LoginPage from '../pages/LoginPage.vue'
 import RegisterPage from '../pages/RegisterPage.vue'
 import AboutPage from '../pages/AboutPage.vue'
+
+// Типы полей meta для всех маршрутов
+declare module 'vue-router' {
+	interface RouteMeta {
+		requiresAuth?: boolean
+		guestOnly?: boolean
+		title?: string
+	}
+}
 
 // Hash-режим: прямые ссылки и обновление страницы работают на GitHub Pages
 // без перенаправления на index.html.
@@ -28,6 +37,7 @@ router.beforeEach((to) => {
 	if (to.meta.guestOnly && userStore.isAuthenticated) {
 		return { name: 'todo' }
 	}
+	return true
 })
 
 router.afterEach((to) => {

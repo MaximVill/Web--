@@ -1,7 +1,7 @@
 <script setup>
 import { computed } from 'vue'
-import { useUserStore } from '../stores/user.js'
-import { useTodoStore } from '../stores/todo.js'
+import { useUserStore } from '../stores/user'
+import { useTodoStore } from '../stores/todo'
 
 const userStore = useUserStore()
 const todoStore = useTodoStore()

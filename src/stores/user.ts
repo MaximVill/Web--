@@ -1,30 +1,28 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
+import type { AuthResult, FormErrors, LoginForm, RegisterField, RegisterForm, User } from '../types/user'
+import { createId } from '../utils/id'
+import { isUser, parseRecord } from '../utils/guards'
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
-export function normalizeEmail(email) {
-	return String(email ?? '').trim().toLowerCase()
-}
-
-function createId() {
-	return globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(16).slice(2)}`
+export function normalizeEmail(email: string): string {
+	return email.trim().toLowerCase()
 }
 
 // Учебная авторизация: всё хранится только в браузере (localStorage).
-// Это не защита реальных данных — используйте вымышленные email и пароли.
+// Это не защита реальных данных, используйте вымышленные email и пароли.
 export const useUserStore = defineStore(
 	'user',
 	() => {
-		const users = ref([])
-		const currentUserId = ref(null)
+		const users = ref<User[]>([])
+		const currentUserId = ref<string | null>(null)
 
 		const currentUser = computed(() => users.value.find(u => u.id === currentUserId.value) ?? null)
 		const isAuthenticated = computed(() => currentUser.value !== null)
 
-		// Возвращают { ok: true } или { ok: false, errors: { поле: 'сообщение' } }
-		function register({ email, password, confirmPassword }) {
-			const errors = {}
+		function register({ email, password, confirmPassword }: RegisterForm): AuthResult<RegisterField> {
+			const errors: FormErrors<RegisterField> = {}
 			const normalized = normalizeEmail(email)
 
 			if (!normalized) {
@@ -53,7 +51,7 @@ export const useUserStore = defineStore(
 			return { ok: true }
 		}
 
-		function login({ email, password }) {
+		function login({ email, password }: LoginForm): AuthResult<'form'> {
 			const normalized = normalizeEmail(email)
 			const user = users.value.find(u => u.email === normalized && u.password === password)
 			if (!user) {
@@ -64,7 +62,7 @@ export const useUserStore = defineStore(
 		}
 
 		// выход не удаляет аккаунты и задачи
-		function logout() {
+		function logout(): void {
 			currentUserId.value = null
 		}
 
@@ -72,8 +70,20 @@ export const useUserStore = defineStore(
 	},
 	{
 		persist: {
+			// ключ и формат те же, что в лабе 7
 			key: 'todo_user',
-			pick: ['users', 'currentUserId']
+			pick: ['users', 'currentUserId'],
+			serializer: {
+				serialize: JSON.stringify,
+				// записи неверной формы отбрасываются
+				deserialize(raw) {
+					const data = parseRecord(raw)
+					const users = Array.isArray(data.users) ? data.users.filter(isUser) : []
+					const id = data.currentUserId
+					const currentUserId = typeof id === 'string' && users.some(u => u.id === id) ? id : null
+					return { users, currentUserId }
+				}
+			}
 		}
 	}
 )

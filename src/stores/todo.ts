@@ -1,10 +1,9 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import { useUserStore } from './user.js'
-
-function createId() {
-	return globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(16).slice(2)}`
-}
+import type { Task } from '../types/todo'
+import { useUserStore } from './user'
+import { createId } from '../utils/id'
+import { isTask, parseRecord } from '../utils/guards'
 
 // Все задачи лежат в одном списке, у каждой есть userId владельца.
 // Наружу отдаётся только список текущего пользователя.
@@ -12,31 +11,32 @@ export const useTodoStore = defineStore(
 	'todo',
 	() => {
 		const userStore = useUserStore()
-		const allTasks = ref([])
+		const allTasks = ref<Task[]>([])
 
 		const tasks = computed(() => allTasks.value.filter(t => t.userId === userStore.currentUserId))
 		const doneCount = computed(() => tasks.value.filter(t => t.done).length)
 
-		function findOwn(id) {
+		function findOwn(id: string): Task | undefined {
 			return tasks.value.find(t => t.id === id)
 		}
 
-		function addTask(title) {
-			if (!userStore.currentUserId) return
-			allTasks.value.push({ id: createId(), userId: userStore.currentUserId, title, done: false })
+		function addTask(title: string): void {
+			const userId = userStore.currentUserId
+			if (!userId) return
+			allTasks.value.push({ id: createId(), userId, title, done: false })
 		}
 
-		function updateTask(id, title) {
+		function updateTask(id: string, title: string): void {
 			const task = findOwn(id)
 			if (task) task.title = title
 		}
 
-		function toggleTask(id) {
+		function toggleTask(id: string): void {
 			const task = findOwn(id)
 			if (task) task.done = !task.done
 		}
 
-		function removeTask(id) {
+		function removeTask(id: string): void {
 			if (!findOwn(id)) return
 			allTasks.value = allTasks.value.filter(t => t.id !== id)
 		}
@@ -46,7 +46,14 @@ export const useTodoStore = defineStore(
 	{
 		persist: {
 			key: 'todo_store',
-			pick: ['allTasks']
+			pick: ['allTasks'],
+			serializer: {
+				serialize: JSON.stringify,
+				deserialize(raw) {
+					const data = parseRecord(raw)
+					return { allTasks: Array.isArray(data.allTasks) ? data.allTasks.filter(isTask) : [] }
+				}
+			}
 		}
 	}
 )

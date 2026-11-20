@@ -3,7 +3,7 @@ import { ref, computed, nextTick } from 'vue'
 import TodoList from '../components/TodoList.vue'
 import AddTodoModal from '../components/AddTodoModal.vue'
 import SearchBar from '../components/SearchBar.vue'
-import { useTodoStore } from '../stores/todo.js'
+import { useTodoStore } from '../stores/todo'
 
 const todoStore = useTodoStore()
 
