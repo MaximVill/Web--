@@ -1,12 +1,18 @@
-<script setup>
+<script setup lang="ts">
 import TodoItem from './TodoItem.vue'
+import type { Task } from '../types/todo'
 
-defineProps({
-	tasks: { type: Array, required: true },
-	searching: { type: Boolean, default: false }
-})
+// searching: у пользователя есть задачи, но поиск ничего не нашёл
+defineProps<{
+	tasks: Task[]
+	searching: boolean
+}>()
 
-defineEmits(['toggle', 'edit', 'delete'])
+defineEmits<{
+	toggle: [id: string]
+	edit: [task: Task]
+	delete: [id: string]
+}>()
 </script>
 
 <template>

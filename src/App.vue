@@ -1,5 +1,5 @@
-<script setup>
-import { ref, watch } from 'vue'
+<script setup lang="ts">
+import { ref, watch, useTemplateRef } from 'vue'
 import { useRouter } from 'vue-router'
 import ThemeToggle from './components/ThemeToggle.vue'
 import { useUserStore } from './stores/user'
@@ -7,8 +7,12 @@ import { useUserStore } from './stores/user'
 const userStore = useUserStore()
 const router = useRouter()
 
+type Theme = 'light' | 'dark'
+
+const mainEl = useTemplateRef<HTMLElement>('main')
+
 // initial theme is set in index.html before first paint
-const theme = ref(document.documentElement.getAttribute('data-theme') || 'light')
+const theme = ref<Theme>(document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light')
 
 watch(theme, (value) => {
 	document.documentElement.setAttribute('data-theme', value)
@@ -23,6 +27,10 @@ function toggleTheme() {
 	theme.value = theme.value === 'dark' ? 'light' : 'dark'
 }
 
+function focusMain() {
+	mainEl.value?.focus()
+}
+
 function logout() {
 	userStore.logout()
 	router.push({ name: 'login' })
@@ -31,7 +39,7 @@ function logout() {
 
 <template>
 	<div class="page">
-		<a href="#main" class="skip-link" @click.prevent="$refs.main.focus()">Перейти к содержимому</a>
+		<a href="#main" class="skip-link" @click.prevent="focusMain">Перейти к содержимому</a>
 
 		<header class="site-header">
 			<nav class="site-nav" aria-label="Основная навигация">
@@ -49,7 +57,7 @@ function logout() {
 
 			<div class="site-header__actions">
 				<template v-if="userStore.isAuthenticated">
-					<span class="site-header__user">{{ userStore.currentUser.email }}</span>
+					<span class="site-header__user">{{ userStore.currentUser?.email }}</span>
 					<button type="button" class="btn btn--secondary" @click="logout">Выйти</button>
 				</template>
 				<ThemeToggle :is-dark="theme === 'dark'" @toggle="toggleTheme" />

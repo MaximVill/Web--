@@ -1,5 +1,6 @@
-<script setup>
-import { ref, computed, nextTick } from 'vue'
+<script setup lang="ts">
+import { ref, computed, nextTick, useTemplateRef } from 'vue'
+import type { Task } from '../types/todo'
 import TodoList from '../components/TodoList.vue'
 import AddTodoModal from '../components/AddTodoModal.vue'
 import SearchBar from '../components/SearchBar.vue'
@@ -8,9 +9,9 @@ import { useTodoStore } from '../stores/todo'
 const todoStore = useTodoStore()
 
 const isModalOpen = ref(false)
-const editingTask = ref(null)
+const editingTask = ref<Task | null>(null)
 const search = ref('')
-const addButton = ref(null)
+const addButtonEl = useTemplateRef<HTMLButtonElement>('addButton')
 
 const today = new Date().toLocaleDateString('ru-RU', {
 	weekday: 'long',
@@ -23,13 +24,13 @@ const visibleTasks = computed(() => {
 	const query = search.value.trim().toLowerCase()
 	return todoStore.tasks
 		.filter(t => t.title.toLowerCase().includes(query))
-		.sort((a, b) => a.done - b.done)
+		.sort((a, b) => Number(a.done) - Number(b.done))
 })
 
 // for screen readers
 const searchMessage = computed(() => search.value ? `Найдено задач: ${visibleTasks.value.length}` : '')
 
-function openModal(task = null) {
+function openModal(task: Task | null = null) {
 	editingTask.value = task
 	isModalOpen.value = true
 }
@@ -39,7 +40,7 @@ function closeModal() {
 	editingTask.value = null
 }
 
-function saveTask(title) {
+function saveTask(title: string) {
 	if (editingTask.value) {
 		todoStore.updateTask(editingTask.value.id, title)
 	} else {
@@ -48,16 +49,16 @@ function saveTask(title) {
 	closeModal()
 }
 
-async function deleteTask(id) {
+async function deleteTask(id: string) {
 	todoStore.removeTask(id)
 
 	// move focus to the first task or to the add button
 	await nextTick()
-	const firstCheckbox = document.querySelector('.task-item__checkbox')
+	const firstCheckbox = document.querySelector<HTMLInputElement>('.task-item__checkbox')
 	if (firstCheckbox) {
 		firstCheckbox.focus()
 	} else {
-		addButton.value.focus()
+		addButtonEl.value?.focus()
 	}
 }
 </script>

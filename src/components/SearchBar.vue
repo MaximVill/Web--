@@ -1,9 +1,6 @@
-<script setup>
-defineProps({
-	modelValue: { type: String, default: '' }
-})
-
-defineEmits(['update:modelValue'])
+<script setup lang="ts">
+// v-model родителя, строка поиска
+const query = defineModel<string>({ required: true })
 </script>
 
 <template>
@@ -14,12 +11,11 @@ defineEmits(['update:modelValue'])
 			<path d="M20 20l-4.2-4.2" />
 		</svg>
 		<input
+			v-model="query"
 			type="search"
 			id="task-search"
 			class="search__input"
 			placeholder="Найти задачу"
-			:value="modelValue"
-			@input="$emit('update:modelValue', $event.target.value)"
 		/>
 	</div>
 </template>

@@ -1,9 +1,15 @@
-<script setup>
-defineProps({
-	task: { type: Object, required: true }
-})
+<script setup lang="ts">
+import type { Task } from '../types/todo'
 
-defineEmits(['toggle', 'edit', 'delete'])
+defineProps<{
+	task: Task
+}>()
+
+defineEmits<{
+	toggle: [id: string]
+	edit: [task: Task]
+	delete: [id: string]
+}>()
 </script>
 
 <template>

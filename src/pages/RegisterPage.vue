@@ -1,15 +1,19 @@
-<script setup>
+<script setup lang="ts">
 import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '../stores/user'
+import type { RegisterField } from '../types/user'
 
 const userStore = useUserStore()
 const router = useRouter()
 
+// порядок полей в форме
+const FIELDS: RegisterField[] = ['email', 'password', 'confirmPassword']
+
 const email = ref('')
 const password = ref('')
 const confirmPassword = ref('')
-const errors = reactive({ email: '', password: '', confirmPassword: '' })
+const errors = reactive<Record<RegisterField, string>>({ email: '', password: '', confirmPassword: '' })
 
 function submit() {
 	const result = userStore.register({
@@ -18,17 +22,18 @@ function submit() {
 		confirmPassword: confirmPassword.value
 	})
 
-	errors.email = result.errors?.email ?? ''
-	errors.password = result.errors?.password ?? ''
-	errors.confirmPassword = result.errors?.confirmPassword ?? ''
-
 	if (result.ok) {
 		router.push({ name: 'login' })
-	} else {
-		// фокус на первое поле с ошибкой
-		const first = ['email', 'password', 'confirmPassword'].find(k => errors[k])
-		document.getElementById(`register-${first}`)?.focus()
+		return
 	}
+
+	for (const field of FIELDS) {
+		errors[field] = result.errors[field] ?? ''
+	}
+
+	// фокус на первое поле с ошибкой
+	const first = FIELDS.find(field => errors[field])
+	if (first) document.getElementById(`register-${first}`)?.focus()
 }
 </script>
 
@@ -48,8 +53,8 @@ function submit() {
 					name="email"
 					autocomplete="username"
 					required
-					:aria-invalid="errors.email ? 'true' : null"
-					:aria-describedby="errors.email ? 'register-email-error' : null"
+					:aria-invalid="errors.email ? 'true' : undefined"
+					:aria-describedby="errors.email ? 'register-email-error' : undefined"
 				/>
 				<p v-if="errors.email" id="register-email-error" class="form-error">{{ errors.email }}</p>
 			</div>
@@ -64,7 +69,7 @@ function submit() {
 					name="password"
 					autocomplete="new-password"
 					required
-					:aria-invalid="errors.password ? 'true' : null"
+					:aria-invalid="errors.password ? 'true' : undefined"
 					:aria-describedby="errors.password ? 'register-password-error' : 'register-password-hint'"
 				/>
 				<p v-if="errors.password" id="register-password-error" class="form-error">{{ errors.password }}</p>
@@ -81,8 +86,8 @@ function submit() {
 					name="confirmPassword"
 					autocomplete="new-password"
 					required
-					:aria-invalid="errors.confirmPassword ? 'true' : null"
-					:aria-describedby="errors.confirmPassword ? 'register-confirm-error' : null"
+					:aria-invalid="errors.confirmPassword ? 'true' : undefined"
+					:aria-describedby="errors.confirmPassword ? 'register-confirm-error' : undefined"
 				/>
 				<p v-if="errors.confirmPassword" id="register-confirm-error" class="form-error">{{ errors.confirmPassword }}</p>
 			</div>

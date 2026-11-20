@@ -1,22 +1,29 @@
-<script setup>
-import { ref, watch } from 'vue'
+<script setup lang="ts">
+import { ref, watch, useTemplateRef } from 'vue'
+import type { Task } from '../types/todo'
 
-const props = defineProps({
-	open: { type: Boolean, default: false },
-	task: { type: Object, default: null }
-})
+// task равен null при создании новой задачи
+const props = defineProps<{
+	open: boolean
+	task: Task | null
+}>()
 
-const emit = defineEmits(['save', 'close'])
+const emit = defineEmits<{
+	save: [title: string]
+	close: []
+}>()
 
-const dialog = ref(null)
+const dialogEl = useTemplateRef<HTMLDialogElement>('dialog')
 const title = ref('')
 
 watch(() => props.open, (value) => {
+	const dialog = dialogEl.value
+	if (!dialog) return
 	if (value) {
-		title.value = props.task ? props.task.title : ''
-		dialog.value.showModal()
-	} else if (dialog.value.open) {
-		dialog.value.close()
+		title.value = props.task?.title ?? ''
+		dialog.showModal()
+	} else if (dialog.open) {
+		dialog.close()
 	}
 })
 

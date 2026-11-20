@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUserStore } from '../stores/user'
@@ -15,7 +15,7 @@ function submit() {
 	if (result.ok) {
 		router.push({ name: 'todo' })
 	} else {
-		formError.value = result.errors.form
+		formError.value = result.errors.form ?? ''
 	}
 }
 </script>

@@ -1,9 +1,11 @@
-<script setup>
-defineProps({
-	isDark: { type: Boolean, default: false }
-})
+<script setup lang="ts">
+defineProps<{
+	isDark: boolean
+}>()
 
-defineEmits(['toggle'])
+defineEmits<{
+	toggle: []
+}>()
 </script>
 
 <template>
@@ -11,7 +13,7 @@ defineEmits(['toggle'])
 		type="button"
 		class="theme-toggle"
 		aria-label="Тёмная тема"
-		:aria-pressed="String(isDark)"
+		:aria-pressed="isDark"
 		@click="$emit('toggle')"
 	>
 		<svg class="icon theme-toggle__icon theme-toggle__icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
