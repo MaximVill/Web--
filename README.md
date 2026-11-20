@@ -32,4 +32,7 @@ node dist/task1.js  # запуск задачи (номер файла 1–9)
 ### Задание 3
 ![alt text](src/images/task3.png)
 
+### Задание 4
+![alt text](src/images/task4.png)
+
 После изменения исходников повторите `npm run build`.
