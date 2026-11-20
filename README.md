@@ -19,7 +19,7 @@
 ```sh
 npm ci              # установка зависимостей по package-lock.json
 npm run check       # проверка типов без сборки
-npm run build       # компиляция src/ → dist/
+npm run build       # компиляция в dist/
 node dist/task1.js  # запуск задачи (номер файла 1–9)
 ```
 
