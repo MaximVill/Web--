@@ -7,6 +7,8 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
+		"lint": "eslint . --max-warnings 0",
+		"lint:fix": "eslint . --fix",
 		"preview": "vite preview"
 	},
 	"repository": {
@@ -20,9 +22,15 @@
 		"vue-router": "^4.6.4"
 	},
 	"devDependencies": {
+		"@eslint/js": "^10.0.1",
 		"@types/node": "^26.6.6",
 		"@vitejs/plugin-vue": "^5.2.4",
+		"@vue/eslint-config-typescript": "^14.9.0",
 		"@vue/tsconfig": "^0.9.1",
+		"eslint": "^10.15.0",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-vue": "^10.12.1",
+		"globals": "^17.14.0",
 		"sass": "^1.106.1",
 		"typescript": "^6.0.3",
 		"vite": "^6.4.5",

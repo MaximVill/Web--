@@ -15,18 +15,18 @@ defineEmits<{
 <template>
 	<li class="task-item" :class="{ 'task-item--done': task.done }">
 		<input
+			:id="'check-' + task.id"
 			type="checkbox"
 			class="task-item__checkbox"
-			:id="'check-' + task.id"
 			:checked="task.done"
 			@change="$emit('toggle', task.id)"
 		/>
-		<label :for="'check-' + task.id" class="task-item__title" :id="'title-' + task.id">{{ task.title }}</label>
+		<label :id="'title-' + task.id" :for="'check-' + task.id" class="task-item__title">{{ task.title }}</label>
 		<div class="task-item__actions">
 			<button
+				:id="'edit-btn-' + task.id"
 				type="button"
 				class="btn-icon btn-icon--edit"
-				:id="'edit-btn-' + task.id"
 				:aria-labelledby="`edit-btn-${task.id} title-${task.id}`"
 				@click="$emit('edit', task)"
 			>
@@ -36,9 +36,9 @@ defineEmits<{
 				</svg>
 			</button>
 			<button
+				:id="'del-btn-' + task.id"
 				type="button"
 				class="btn-icon btn-icon--delete"
-				:id="'del-btn-' + task.id"
 				:aria-labelledby="`del-btn-${task.id} title-${task.id}`"
 				@click="$emit('delete', task.id)"
 			>

@@ -42,9 +42,9 @@ function submit() {
 			<div class="form-group">
 				<label for="task-title" class="form-group__label">Название задачи</label>
 				<input
+					id="task-title"
 					v-model="title"
 					type="text"
-					id="task-title"
 					class="form-group__input"
 					name="title"
 					required

@@ -46,8 +46,8 @@ function submit() {
 			<div class="form-group">
 				<label for="register-email" class="form-group__label">Email</label>
 				<input
-					v-model="email"
 					id="register-email"
+					v-model="email"
 					class="form-group__input"
 					type="email"
 					name="email"
@@ -62,8 +62,8 @@ function submit() {
 			<div class="form-group">
 				<label for="register-password" class="form-group__label">Пароль</label>
 				<input
-					v-model="password"
 					id="register-password"
+					v-model="password"
 					class="form-group__input"
 					type="password"
 					name="password"
@@ -79,8 +79,8 @@ function submit() {
 			<div class="form-group">
 				<label for="register-confirmPassword" class="form-group__label">Подтверждение пароля</label>
 				<input
-					v-model="confirmPassword"
 					id="register-confirmPassword"
+					v-model="confirmPassword"
 					class="form-group__input"
 					type="password"
 					name="confirmPassword"

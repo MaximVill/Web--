@@ -31,8 +31,8 @@ function submit() {
 			<div class="form-group">
 				<label for="login-email" class="form-group__label">Email</label>
 				<input
-					v-model="email"
 					id="login-email"
+					v-model="email"
 					class="form-group__input"
 					type="email"
 					name="email"
@@ -44,8 +44,8 @@ function submit() {
 			<div class="form-group">
 				<label for="login-password" class="form-group__label">Пароль</label>
 				<input
-					v-model="password"
 					id="login-password"
+					v-model="password"
 					class="form-group__input"
 					type="password"
 					name="password"

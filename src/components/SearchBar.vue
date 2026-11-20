@@ -11,9 +11,9 @@ const query = defineModel<string>({ required: true })
 			<path d="M20 20l-4.2-4.2" />
 		</svg>
 		<input
+			id="task-search"
 			v-model="query"
 			type="search"
-			id="task-search"
 			class="search__input"
 			placeholder="Найти задачу"
 		/>
