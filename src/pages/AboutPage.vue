@@ -21,7 +21,9 @@ const stack = [
   { name: 'Pinia', text: 'Сторы пользователей и задач' },
   { name: 'Vue Router', text: 'Страницы и guard для гостей' },
   { name: 'persistedstate', text: 'Состояние живёт в localStorage' },
-  { name: 'Vite + Sass', text: 'Сборка и стили' }
+  { name: 'Vite + Sass', text: 'Сборка и стили' },
+  { name: 'TypeScript', text: 'Типы и проверка через vue-tsc' },
+  { name: 'ESLint + Prettier', text: 'Проверка кода и форматирование' }
 ]
 
 const history = [
@@ -36,7 +38,12 @@ const history = [
     lab: 'Лаба 5–6',
     text: 'Тот же To-Do на Vue 3 и Vite, с модалкой, поиском и темой.'
   },
-  { lab: 'Лаба 7', text: 'Pinia, маршруты и учебная авторизация — вы здесь.' }
+  { lab: 'Лаба 7', text: 'Pinia, маршруты и учебная авторизация.' },
+  { lab: 'Лаба 8', text: 'Практикум по TypeScript в консоли.' },
+  {
+    lab: 'Лаба 9',
+    text: 'To-Do переехал на TypeScript, добавлены ESLint и Prettier — вы здесь.'
+  }
 ]
 </script>
 
