@@ -1,0 +1,24 @@
+{
+  "name": "typescript-lab-8",
+  "version": "1.0.0",
+  "description": "Лабораторная работа №8 — Основы TypeScript. Практикум в Node.js",
+  "scripts": {
+    "check": "tsc -p tsconfig.json --noEmit",
+    "build": "tsc -p tsconfig.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaximVill/Web--.git"
+  },
+  "keywords": [],
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/MaximVill/Web--/issues"
+  },
+  "homepage": "https://github.com/MaximVill/Web--#readme",
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
+  },
+  "private": "true"
+}
