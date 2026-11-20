@@ -23,4 +23,10 @@ npm run build       # компиляция в dist/
 node dist/task1.js  # запуск задачи (номер файла 1–9)
 ```
 
+### Задание 1
+![alt text](src/images/task1.png)
+
+### Задание 2
+![alt text](src/imagestask2.png)
+
 После изменения исходников повторите `npm run build`.
