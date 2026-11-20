@@ -1,16 +1,18 @@
 {
   "name": "todo-list-vue",
   "version": "1.0.0",
-  "description": "To-Do List on Vue 3 and Vite - Lab 6",
+  "description": "To-Do List on Vue 3, Vite and TypeScript - Lab 9",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "type-check": "vue-tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.node.json",
     "lint": "eslint . --max-warnings 0",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "check": "npm run type-check && npm run lint && npm run format:check",
+    "build": "npm run check && vite build",
     "preview": "vite preview"
   },
   "repository": {

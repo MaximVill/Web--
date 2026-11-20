@@ -2,7 +2,7 @@ name: Build and publish To-Do
 
 on:
   push:
-    branches: [lab6-vue_2]
+    branches: [lab9-TO-DO-TypeScript]
   workflow_dispatch:
 
 permissions:
