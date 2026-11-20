@@ -30,7 +30,9 @@
 // Keyboard focus: transparent outline stays visible in Windows high-contrast mode
 @mixin focus-ring {
   outline: 2px solid transparent;
-  box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--focus);
+  box-shadow:
+    0 0 0 2px var(--surface),
+    0 0 0 4px var(--focus);
 }
 
 @mixin below($bp) {

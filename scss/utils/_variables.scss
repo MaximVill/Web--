@@ -1,8 +1,24 @@
 // Design tokens (Fluent-like)
 
 // Typography
-$font-text: 'Segoe UI Variable Text', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Roboto, 'Noto Sans', sans-serif;
-$font-display: 'Segoe UI Variable Display', 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Roboto, 'Noto Sans', sans-serif;
+$font-text:
+  'Segoe UI Variable Text',
+  'Segoe UI',
+  system-ui,
+  -apple-system,
+  'Helvetica Neue',
+  Roboto,
+  'Noto Sans',
+  sans-serif;
+$font-display:
+  'Segoe UI Variable Display',
+  'Segoe UI',
+  system-ui,
+  -apple-system,
+  'Helvetica Neue',
+  Roboto,
+  'Noto Sans',
+  sans-serif;
 
 // Radii
 $radius-sm: 4px;

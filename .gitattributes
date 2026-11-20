@@ -1,0 +1,2 @@
+# LF в рабочей копии, как требует Prettier, независимо от core.autocrlf
+* text=auto eol=lf
