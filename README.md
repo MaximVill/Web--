@@ -1,6 +1,6 @@
 # Кринж-лаба: Хэллоуин — «Сладость или гадость»
 
-Ссылка на игру: [Тыква и тайна](https://web-nrszuuhem-maximvills-projects.vercel.app/)
+Ссылка на игру: [Тыква и тайна]([https://web-nrszuuhem-maximvills-projects.vercel.app/](https://web-nrszuuhem-maximvills-projects.vercel.app/))
 
 Хэллоуинский детектив-рогалик в стиле «Где ты, Скуби-Ду?» (1969). Ты — шкет с тыквой-корзинкой и Polaroid:
 стучись в двери, расспрашивай жильцов и разоблачай **настоящих** монстров среди соседей в резиновых масках.
