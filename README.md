@@ -1,6 +1,6 @@
 # МЕМОКОНТЕКСТ (Web Cringe Memes)
 
-Ссылка на сайт: [МЕМОКОНТЕКСТ.РУ](https://web-39nknjutu-maximvills-projects.vercel.app/])
+Ссылка на сайт: [МЕМОКОНТЕКСТ.РУ](https://web-39nknjutu-maximvills-projects.vercel.app/)
 
 Интерактивный сайт с любимыми мемами (в рамках приличий), построенный вокруг концепции **«Контекст решает всё»**.
 
